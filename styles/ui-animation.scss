@@ -1,0 +1,136 @@
+$border-colour: #9a9a9a;
+$font-colour: #fff;
+
+#ui-animation {
+
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 444px;
+    border: 1px solid $border-colour;
+    color: $font-colour;
+
+    button, input, span {
+        background: transparent;
+        border: 1px solid $border-colour;
+        color: $font-colour;
+        padding: 10px;
+        box-sizing: border-box;
+        width: 33.3333%;
+    }
+
+    button {
+        &:hover {
+            cursor: pointer;
+        }
+    }
+
+    input {
+        width: 100%;
+    }
+
+    #cycle {
+
+        width: 100%;
+
+        .led-position {
+            input {
+                width: 66.666666%;
+            }
+            span {
+                width: 16.666666665%;
+                &:hover {
+                    cursor: pointer;
+                }
+            }
+        }
+    }
+
+    #ui-lights {
+
+        & > div {
+
+            &.controls {
+                button, input {
+                    width: 50%;
+                }
+            }
+
+            &.lights {
+
+                width: 100%;
+
+                & > p {
+
+                    display: table;
+                    table-layout: fixed;
+                    width: 100%;
+                    margin: 0 auto;
+                    height: 44px;
+                    line-height: 44px;
+                    box-sizing: border-box;
+
+                    &:nth-child(1), &:nth-child(5) {
+                        height: 18px;
+                        line-height: 22px;
+                    }
+
+                    &:nth-child(2), &:nth-child(4) {
+                        padding: 0 80px;
+                    }
+
+                    &:nth-child(3) {
+
+                        height: 90px;
+                        line-height: 86px;
+                        padding: 0 108px;
+
+                        & > a {
+                            &:first-child {
+                                text-align: left;
+                            }
+                            &:last-child {
+                                text-align: right;
+                            }
+                        }
+                    }
+
+                    & > a {
+
+                        display: table-cell;
+                        vertical-align: middle;
+                        text-align: center;
+                        text-decoration: none;
+                        font-size: 44px;
+
+                        &:before {
+                            content: "\25e6";
+                        }
+
+                        &:hover {
+                            cursor: pointer;
+                        }
+
+                        &.active {
+                            &:before {
+                            	content: "\2022";
+                            }
+                        }
+                    }
+                }
+            }
+
+            &.set-colour {
+                input {
+                    width:50%;
+                }
+                span {
+                    width: 25%;
+                    &:hover {
+                        cursor: pointer;
+                    }
+                }
+            }
+        }
+    }
+}
