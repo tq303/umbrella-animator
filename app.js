@@ -1,6 +1,6 @@
-import Canvas   from './js/Canvas'
-import Umbrella from './js/Umbrella'
-import Animator from './js/Animator'
+import Canvas   from './canvas'
+import Umbrella from './umbrella'
+import Animator from './containers/Animator'
 
 require('./styles/style.scss');
 
@@ -8,9 +8,6 @@ window.LED_COUNT      = 30;
 window.STRIP_COUNT    = 8;
 window.UMBRELLA_COUNT = 1;
 window.INACTIVE_COLOUR = '000000';
-
-let width  = window.innerWidth,
-    height = window.innerHeight;
 
 let canvas = new Canvas( 1024, 576, 25 ),
     umbrellas = [];

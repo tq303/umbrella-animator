@@ -1,6 +1,6 @@
 ### Umbrella UI
 
-Design animations and export code.
+Design animations and export JSON array for use with Arduino RF communications with umbrellas.
 
 ### Prerequisites
 ```

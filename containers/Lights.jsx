@@ -1,7 +1,7 @@
 import React, { PropTypes } from 'react';
 import ColorPicker from 'react-color';
 
-import Light from './Light';
+import Light from '../components/Light';
 
 // this.activateAll.bind(this)
 // this.deActivateAll.bind(this)
