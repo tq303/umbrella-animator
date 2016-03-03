@@ -1,3 +1,10 @@
+// global
+export const reset = ( position ) => {
+    return {
+        type: 'RESET'
+    }
+}
+
 // FRAME's
 export const fwdFrame = () => {
     return {

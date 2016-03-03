@@ -1,10 +1,12 @@
+import defaultFrame from '../constants/defaultFrame'
+
 const initialState = {
     frames: {
         position: 0,
-        all: []
+        all: [ defaultFrame ]
     },
     lights: {
-        current: [],
+        current: [ defaultFrame ],
         level: 0
     }
 }

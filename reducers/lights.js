@@ -13,7 +13,9 @@ export default function (state = initialState.lights, action) {
             break
         case 'LED_DEACTIVATE_ALL':
             break
-
+        case 'RESET':
+            state = initialState.lights
+            break;
     }
     return state
 }

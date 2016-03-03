@@ -18,8 +18,12 @@ describe('Redux Reducers', () => {
 
         describe('#all', () => {
 
+            before(() => {
+                reducers( {}, actions.reset() )
+                reducers( {}, actions.addFrame() )
+            })
+
             it('adds two frames', () => {
-                reducers( {}, { type: 'FRAME_ADD' } )
                 expect( reducers( {}, actions.addFrame() ).frames.all.length ).toEqual( 2 )
             })
 
@@ -30,10 +34,14 @@ describe('Redux Reducers', () => {
 
         describe('#position', () => {
 
-            // it('moves position forward', () => {
-            //     expect( reducers( {}, { type: 'FRAME_FWD' } ).frames.position ).toEqual( 1 )
-            // })
-            //
+            before(() => {
+                reducers( {}, actions.reset() )
+            })
+
+            it('moves position forward', () => {
+                expect( reducers( {}, actions.fwdFrame() ).frames.position ).toEqual( 1 )
+            })
+
             // it('moves position backward', () => {
             //     return true
             // })

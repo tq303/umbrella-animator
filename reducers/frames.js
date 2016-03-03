@@ -8,12 +8,14 @@ export default function (state = initialState.frames, action) {
     switch( action.type ) {
 
         case 'FRAME_FWD':
+
             if ( ( state.position + 1 ) < state.all.length ) {
                 state.position = ( state.position + 1 )
             }
             break
 
         case 'FRAME_BWD':
+        
             if ( ( state.position - 1 ) >= 0 ) {
                 state.position = ( state.position - 1 )
             }
@@ -53,6 +55,9 @@ export default function (state = initialState.frames, action) {
         case 'FRAME_CURRENT':
             break
 
+        case 'RESET':
+            state = initialState.frames
+            break;
     }
 
     return state
