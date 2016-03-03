@@ -1,7 +1,5 @@
 import THREE from 'three';
 
-import Umbrella from '../Umbrella';
-
 const OrbitControls = require('three-orbit-controls')(THREE);
 
 class Canvas {

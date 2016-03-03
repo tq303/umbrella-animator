@@ -3,6 +3,8 @@ import ColorPicker from 'react-color';
 
 import Light from '../components/Light';
 
+import Btn from '../components/Button'
+
 // this.activateAll.bind(this)
 // this.deActivateAll.bind(this)
 
@@ -18,8 +20,8 @@ const Lights = () => (
         </div>
 
         <div className="controls">
-            <button><i className="fa fa-sun-o"></i></button>
-            <button><i className="fa fa-circle-thin"></i></button>
+            <Btn className="fa fa-sun-o"/>
+            <Btn className="fa fa-circle-thin"/>
         </div>
 
         <div className="set-colour">
