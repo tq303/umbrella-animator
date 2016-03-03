@@ -1,26 +1,26 @@
 // FRAME's
 export const fwdFrame = () => {
     return {
-        type: 'FWD_FRAME'
+        type: 'FRAME_FWD'
     }
 }
 
 export const bwdFrame = () => {
     return {
-        type: 'BWD_FRAME'
+        type: 'FRAME_BWD'
     }
 }
 
 export const addFrame = ( position ) => {
     return {
-        type: 'ADD_FRAME',
+        type: 'FRAME_ADD',
         position
     }
 }
 
 export const removeFrame = ( position ) => {
     return {
-        type: 'REMOVE_FRAME',
+        type: 'FRAME_REMOVE',
         position
     }
 }
@@ -28,23 +28,23 @@ export const removeFrame = ( position ) => {
 // LED's
 export const fwdLedPosition = () => {
     return {
-        type: 'FWD_LED_POSITION'
+        type: 'LED_FWD_POSITION'
     }
 }
 
 export const bwdLedPosition = () => {
     return {
-        type: 'BWD_LED_POSITION'
+        type: 'LED_BWD_POSITION'
     }
 }
 
 export const activateAllLeds = () => {
     return {
-        type: 'ACTIVE_ALL_LEDS'
+        type: 'LED_ACTIVATE_ALL'
     }
 }
 export const deActivateAllLeds = () => {
     return {
-        type: 'DEACTIVE_ALL_LEDS'
+        type: 'LED_DEACTIVATE_ALL'
     }
 }
