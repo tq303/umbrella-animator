@@ -1,24 +1,19 @@
 import React, { PropTypes } from 'react'
 
+// containers
 import Lights from './Lights'
 
+// components
 import Btn from '../components/Button'
+import DisplayNumber from '../components/DisplayNumber'
+
+// actions
+import { fwdFrame, bwdFrame, addFrame, removeFrame, fwdLedPosition, bwdLedPosition } from '../actions'
 
 require('../styles/style.scss');
 
-// this.popFrame.bind(this)
-// this.pushFrame.bind(this)
-// this.insertFrame.bind(this)
-// this.deleteFrame.bind(this)
-// this.undoDeleteFrame.bind(this)
-// this.decreaseLed.bind(this)
-// this.increaseLed.bind(this)
-
-const FramePosition = ({ current = 1, total = 1 }) => (<p><span>{ current }</span>/<span>{ total }</span></p>)
-const LedPosition = ({ position = 1 }) => (<p><span>{ position }</span></p>)
-
 // UI
-const UIAnimation = () => (
+const UIAnimation = ({ dispatch }) => (
     <div id="cycle">
 
         <div>
@@ -26,7 +21,7 @@ const UIAnimation = () => (
             <Btn className="fa fa-step-forward"/>
         </div>
 
-        <FramePosition />
+        <p><DisplayNumber/>/<DisplayNumber/></p>
 
         <div>
             <Btn className="fa fa-plus"/>
@@ -39,7 +34,7 @@ const UIAnimation = () => (
             <Btn className="fa fa-arrow-down"/>
         </div>
 
-        <LedPosition />
+        <p><DisplayNumber/></p>
 
         <Lights/>
 
