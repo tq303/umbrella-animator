@@ -12,11 +12,6 @@ import reducers from './reducers'
 
 const store = createStore( reducers )
 
-window.LED_COUNT      = 30;
-window.STRIP_COUNT    = 8;
-window.UMBRELLA_COUNT = 1;
-window.INACTIVE_COLOUR = '000000';
-
 let canvas = new Canvas( 1024, 576, 25 ),
     umbrellas = [];
 

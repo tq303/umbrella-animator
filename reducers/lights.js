@@ -1,5 +1,19 @@
 import { combineReducers } from 'redux'
 
-export default function (state = [], action) {
-    return state;
+import initialState from '../constants/initialState'
+
+export default function (state = initialState.lights, action) {
+
+    switch ( action.type ) {
+        case 'LED_FWD_POSITION':
+            break
+        case 'LED_BWD_POSITION':
+            break
+        case 'LED_ACTIVATE_ALL':
+            break
+        case 'LED_DEACTIVATE_ALL':
+            break
+
+    }
+    return state
 }
