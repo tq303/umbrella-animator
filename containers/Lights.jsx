@@ -8,9 +8,6 @@ import Btn from '../components/Button'
 
 import { activateAllLeds, deActivateAllLeds } from '../actions'
 
-const mapStateToProps    = ( state ) => { return {} }
-const mapDispatchToProps = ( state ) => { return {} }
-
 const Lights = () => (
     <div id="ui-lights">
 
@@ -33,6 +30,11 @@ const Lights = () => (
 
     </div>
 );
+
+Lights.propTypes = {}
+
+const mapStateToProps    = ( state ) => { return {} }
+const mapDispatchToProps = ( state ) => { return {} }
 
 export default connect(
     mapStateToProps,

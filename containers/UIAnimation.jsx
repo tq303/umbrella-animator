@@ -13,9 +13,6 @@ import { fwdFrame, bwdFrame, addFrame, removeFrame, fwdLedPosition, bwdLedPositi
 
 require('../styles/style.scss');
 
-const mapStateToProps    = ( state ) => { return {} }
-const mapDispatchToProps = ( state ) => { return {} }
-
 // UI
 const UIAnimation = ({ dispatch }) => (
     <div id="cycle">
@@ -45,6 +42,10 @@ const UIAnimation = ({ dispatch }) => (
     </div>
 );
 
+UIAnimation.propTypes = {}
+
+const mapStateToProps    = ( state ) => { return {} }
+const mapDispatchToProps = ( state ) => { return {} }
 
 export default connect(
     mapStateToProps,
