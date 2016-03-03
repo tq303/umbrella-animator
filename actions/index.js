@@ -1,31 +1,33 @@
+import { STRIP_COUNT, LED_COUNT, INACTIVE_COLOUR } from '../constants/ledDefinitions'
+
 // global
-export const reset = ( position ) => {
+export const reset = () => {
     return {
         type: 'RESET'
     }
 }
 
 // FRAME's
-export const fwdFrame = () => {
+export const frameFwd = () => {
     return {
         type: 'FRAME_FWD'
     }
 }
 
-export const bwdFrame = () => {
+export const frameBwd = () => {
     return {
         type: 'FRAME_BWD'
     }
 }
 
-export const addFrame = ( position ) => {
+export const frameAdd = ( position = null ) => {
     return {
         type: 'FRAME_ADD',
         position
     }
 }
 
-export const removeFrame = ( position ) => {
+export const frameRemove = ( position = null ) => {
     return {
         type: 'FRAME_REMOVE',
         position
@@ -33,25 +35,38 @@ export const removeFrame = ( position ) => {
 }
 
 // LED's
-export const fwdLedPosition = () => {
+export const ledFwd = () => {
     return {
-        type: 'LED_FWD_POSITION'
+        type: 'LED_FWD'
     }
 }
 
-export const bwdLedPosition = () => {
+export const ledBwd = () => {
     return {
-        type: 'LED_BWD_POSITION'
+        type: 'LED_BWD'
     }
 }
 
-export const activateAllLeds = () => {
+export const ledActivate = ( colour = INACTIVE_COLOUR, level = 0, led = null) => {
     return {
-        type: 'LED_ACTIVATE_ALL'
+        type: 'LED_ACTIVATE',
+        colour,
+        level,
+        led
     }
 }
-export const deActivateAllLeds = () => {
+
+export const ledDeactivate = ( colour = INACTIVE_COLOUR, level = 0, led = null) => {
     return {
-        type: 'LED_DEACTIVATE_ALL'
+        type: 'LED_DEACTIVATE',
+        colour,
+        level,
+        led
+    }
+}
+
+export const ledCurrentlySelected = () => {
+    return {
+        type: 'LED_CURRENTLY_SELECTED'
     }
 }

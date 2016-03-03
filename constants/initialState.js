@@ -6,7 +6,7 @@ const initialState = {
         all: [ defaultFrame ]
     },
     lights: {
-        current: [ defaultFrame ],
+        current: defaultFrame.map( strip => strip[0] ),
         level: 0
     }
 }
