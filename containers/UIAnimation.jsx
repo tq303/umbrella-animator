@@ -1,4 +1,5 @@
 import React, { PropTypes } from 'react'
+import { connect } from 'react-redux'
 
 // containers
 import Lights from './Lights'
@@ -11,6 +12,9 @@ import DisplayNumber from '../components/DisplayNumber'
 import { fwdFrame, bwdFrame, addFrame, removeFrame, fwdLedPosition, bwdLedPosition } from '../actions'
 
 require('../styles/style.scss');
+
+const mapStateToProps    = ( state ) => { return {} }
+const mapDispatchToProps = ( state ) => { return {} }
 
 // UI
 const UIAnimation = ({ dispatch }) => (
@@ -42,4 +46,7 @@ const UIAnimation = ({ dispatch }) => (
 );
 
 
-export default UIAnimation;
+export default connect(
+    mapStateToProps,
+    mapDispatchToProps
+)(UIAnimation);

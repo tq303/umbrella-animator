@@ -1,12 +1,15 @@
 import React, { PropTypes } from 'react';
+import { connect } from 'react-redux'
 import ColorPicker from 'react-color';
 
 import Light from '../components/Light';
 
 import Btn from '../components/Button'
 
-// this.activateAll.bind(this)
-// this.deActivateAll.bind(this)
+import { activateAllLeds, deActivateAllLeds } from '../actions'
+
+const mapStateToProps    = ( state ) => { return {} }
+const mapDispatchToProps = ( state ) => { return {} }
 
 const Lights = () => (
     <div id="ui-lights">
@@ -31,4 +34,7 @@ const Lights = () => (
     </div>
 );
 
-export default Lights;
+export default connect(
+    mapStateToProps,
+    mapDispatchToProps
+)(Lights);

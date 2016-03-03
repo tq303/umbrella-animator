@@ -37,3 +37,14 @@ export const bwdLedPosition = () => {
         type: 'BWD_LED_POSITION'
     }
 }
+
+export const activateAllLeds = () => {
+    return {
+        type: 'ACTIVE_ALL_LEDS'
+    }
+}
+export const deActivateAllLeds = () => {
+    return {
+        type: 'DEACTIVE_ALL_LEDS'
+    }
+}
