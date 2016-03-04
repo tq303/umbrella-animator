@@ -20,30 +20,28 @@ export const frameBwd = () => {
     }
 }
 
-export const frameAdd = ( position = null ) => {
+export const frameAdd = () => {
     return {
-        type: 'FRAME_ADD',
-        position
+        type: 'FRAME_ADD'
     }
 }
 
-export const frameRemove = ( position = null ) => {
+export const frameRmv = () => {
     return {
-        type: 'FRAME_REMOVE',
-        position
+        type: 'FRAME_REMOVE'
     }
 }
 
 // LED's
-export const ledFwd = () => {
+export const ledUp = () => {
     return {
-        type: 'LED_FWD'
+        type: 'LED_UP'
     }
 }
 
-export const ledBwd = () => {
+export const ledDwn = () => {
     return {
-        type: 'LED_BWD'
+        type: 'LED_DWN'
     }
 }
 

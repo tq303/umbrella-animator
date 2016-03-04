@@ -24,7 +24,7 @@ describe('Redux Reducers', () => {
             })
 
             it('removes one frame', () => {
-                store.dispatch( actions.frameRemove() )
+                store.dispatch( actions.frameRmv() )
                 expect( store.getState().frames.all.length ).toEqual( 1 )
             })
         })
@@ -50,7 +50,7 @@ describe('Redux Reducers', () => {
             it('moves position back if frame is removed', () => {
                 store.dispatch( actions.frameFwd() )
                 store.dispatch( actions.frameFwd() )
-                store.dispatch( actions.frameRemove() )
+                store.dispatch( actions.frameRmv() )
                 expect( store.getState().frames.position ).toEqual( 1 )
             })
         })
@@ -65,20 +65,20 @@ describe('Redux Reducers', () => {
             })
 
             it('moves forward', () => {
-                store.dispatch( actions.ledFwd() )
-                store.dispatch( actions.ledFwd() )
-                store.dispatch( actions.ledFwd() )
-                store.dispatch( actions.ledFwd() )
-                store.dispatch( actions.ledFwd() )
+                store.dispatch( actions.ledUp() )
+                store.dispatch( actions.ledUp() )
+                store.dispatch( actions.ledUp() )
+                store.dispatch( actions.ledUp() )
+                store.dispatch( actions.ledUp() )
                 expect( store.getState().lights.level ).toEqual( 5 )
             })
 
             it('moves backward', () => {
-                store.dispatch( actions.ledBwd() )
-                store.dispatch( actions.ledBwd() )
-                store.dispatch( actions.ledBwd() )
-                store.dispatch( actions.ledBwd() )
-                store.dispatch( actions.ledBwd() )
+                store.dispatch( actions.ledDwn() )
+                store.dispatch( actions.ledDwn() )
+                store.dispatch( actions.ledDwn() )
+                store.dispatch( actions.ledDwn() )
+                store.dispatch( actions.ledDwn() )
                 expect( store.getState().lights.level ).toEqual( 0 )
             })
         })

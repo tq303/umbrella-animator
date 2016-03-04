@@ -30,18 +30,11 @@ export default function ( state, action ) {
         case 'FRAME_ADD':
 
             // can insert at end or into position
-            if ( action.position === null ) {
-
-                state.frames.all = [ ...state.frames.all, defaultFrame.map( strip => strip ) ]
-
-            } else {
-
-                state.frames.all = [
-                    ...state.frames.all.splice( 0, action.position ),
-                    ...state.frames.all, defaultFrame,
-                    ...state.frames.all.splice( action.position + 1 )
-                ]
-            }
+            state.frames.all = [
+                ...state.frames.all.splice( 0, state.frames.position ),
+                ...state.frames.all, defaultFrame,
+                ...state.frames.all.splice( state.frames.position + 1 )
+            ]
 
             state.frames.current = state.frames.all[ state.frames.position ].map( strip => strip )
 
@@ -50,19 +43,10 @@ export default function ( state, action ) {
         case 'FRAME_REMOVE':
 
             // can remove at end or into position
-            if ( action.position === null ) {
-
-                state.frames.all = [
-                    ...state.frames.all.splice( 0, state.frames.all.length - 1 )
-                ]
-
-            } else {
-
-                state.frames.all = [
-                    ...state.frames.all.splice( 0, action.position ),
-                    ...state.frames.all.splice( action.position + 1 )
-                ]
-            }
+            state.frames.all = [
+                ...state.frames.all.splice( 0, state.frames.position ),
+                ...state.frames.all.splice( state.frames.position + 1 )
+            ]
 
             if ( state.frames.position >= state.frames.all.length ) {
                 state.frames.position = ( state.frames.all.length - 1 )
@@ -72,14 +56,13 @@ export default function ( state, action ) {
 
             break
 
-        case 'LED_FWD':
-
+        case 'LED_UP':
             if ( ( state.lights.level + 1 ) < LED_COUNT ) {
                 state.lights.level = ( state.lights.level + 1 )
             }
             break
 
-        case 'LED_BWD':
+        case 'LED_DWN':
 
             if ( ( state.lights.level - 1 ) >= 0 ) {
                 state.lights.level = ( state.lights.level - 1 )
