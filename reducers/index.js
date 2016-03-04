@@ -57,6 +57,7 @@ export default function ( state, action ) {
             break
 
         case 'LED_UP':
+        
             if ( ( state.lights.level + 1 ) < LED_COUNT ) {
                 state.lights.level = ( state.lights.level + 1 )
             }

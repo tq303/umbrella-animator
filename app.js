@@ -34,3 +34,5 @@ render (
     </Provider>,
     document.getElementById('ui-animation')
 )
+
+// store.subscribe(()=> { console.log('store updated') })
