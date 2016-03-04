@@ -47,26 +47,19 @@ export const ledBwd = () => {
     }
 }
 
-export const ledActivate = ( colour = INACTIVE_COLOUR, level = 0, led = null) => {
+export const ledActivate = ( colour = INACTIVE_COLOUR, strip = false, all = false ) => {
     return {
         type: 'LED_ACTIVATE',
         colour,
-        level,
-        led
+        strip,
+        all
     }
 }
 
-export const ledDeactivate = ( colour = INACTIVE_COLOUR, level = 0, led = null) => {
+export const ledDeactivate = ( strip = false, all = false ) => {
     return {
         type: 'LED_DEACTIVATE',
-        colour,
-        level,
-        led
-    }
-}
-
-export const ledCurrentlySelected = () => {
-    return {
-        type: 'LED_CURRENTLY_SELECTED'
+        strip,
+        all
     }
 }

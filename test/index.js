@@ -1,50 +1,49 @@
 import expect from 'expect'
+import { createStore, applyMiddleware } from 'redux'
 
 import reducers from '../reducers'
 import * as actions from '../actions'
 
-import initialState from '../constants/initialState'
 import { STRIP_COUNT, LED_COUNT, INACTIVE_COLOUR } from '../constants/ledDefinitions'
 
+let store = createStore( reducers )
+
 describe('Redux Reducers', () => {
-
-    describe('Set initial state', () => {
-
-        it('is the same as initialState', () => {
-            expect( reducers( undefined, {} ) ).toEqual( initialState )
-        })
-    })
 
     describe('Frames', () => {
 
         describe('#all', () => {
 
             before(() => {
-                reducers( {}, actions.reset() )
+                store.dispatch( actions.reset() )
             })
 
             it('adds one frames', () => {
-                expect( reducers( {}, actions.frameAdd() ).frames.all.length ).toEqual( 2 )
+                store.dispatch( actions.frameAdd() )
+                expect( store.getState().frames.all.length ).toEqual( 2 )
             })
 
             it('removes one frame', () => {
-                expect( reducers( {}, actions.frameRemove() ).frames.all.length ).toEqual( 1 )
+                store.dispatch( actions.frameRemove() )
+                expect( store.getState().frames.all.length ).toEqual( 1 )
             })
         })
 
         describe('#position', () => {
 
             before(() => {
-                reducers( {}, actions.reset() )
-                reducers( {}, actions.frameAdd() )
+                store.dispatch( actions.reset() )
+                store.dispatch( actions.frameAdd() )
             })
 
             it('moves position forward', () => {
-                expect( reducers( {}, actions.frameFwd() ).frames.position ).toEqual( 1 )
+                store.dispatch( actions.frameFwd() )
+                expect( store.getState().frames.position ).toEqual( 1 )
             })
 
             it('moves position backward', () => {
-                expect( reducers( {}, actions.frameBwd() ).frames.position ).toEqual( 0 )
+                store.dispatch( actions.frameBwd() )
+                expect( store.getState().frames.position ).toEqual( 0 )
             })
         })
     })
@@ -54,42 +53,51 @@ describe('Redux Reducers', () => {
         describe('#position', () => {
 
             before(() => {
-                reducers( {}, actions.reset() )
+                store.dispatch( actions.reset() )
             })
 
             it('moves forward', () => {
-                reducers( {}, actions.ledFwd() )
-                reducers( {}, actions.ledFwd() )
-                reducers( {}, actions.ledFwd() )
-                reducers( {}, actions.ledFwd() )
-                expect( reducers( {}, actions.ledFwd() ).lights.level ).toEqual( 5 )
+                store.dispatch( actions.ledFwd() )
+                store.dispatch( actions.ledFwd() )
+                store.dispatch( actions.ledFwd() )
+                store.dispatch( actions.ledFwd() )
+                store.dispatch( actions.ledFwd() )
+                expect( store.getState().lights.level ).toEqual( 5 )
             })
 
             it('moves backward', () => {
-                reducers( {}, actions.ledBwd() )
-                reducers( {}, actions.ledBwd() )
-                reducers( {}, actions.ledBwd() )
-                reducers( {}, actions.ledBwd() )
-                expect( reducers( {}, actions.ledBwd() ).lights.level ).toEqual( 0 )
+                store.dispatch( actions.ledBwd() )
+                store.dispatch( actions.ledBwd() )
+                store.dispatch( actions.ledBwd() )
+                store.dispatch( actions.ledBwd() )
+                store.dispatch( actions.ledBwd() )
+                expect( store.getState().lights.level ).toEqual( 0 )
             })
         })
 
         describe('#activate', () => {
 
             beforeEach(() => {
-                reducers( {}, actions.reset() )
+                store.dispatch( actions.reset() )
             })
 
-            // it('activate all at level', () => {
-            //     const expectCurrent = ['ffffff', 'ffffff', 'ffffff', 'ffffff', 'ffffff', 'ffffff']
-            //     reducers( {}, actions.ledActivate( 'ffffff' )
-            //     expect( reducers( {}, actions.ledActivate() ) ).toEqual( expectCurrent )
-            // })
+            it('activate loop at level 0', () => {
+                store.dispatch( actions.ledActivate( 'ffffff' ))
+                const expectCurrent = ['ffffff', 'ffffff', 'ffffff', 'ffffff', 'ffffff', 'ffffff', 'ffffff', 'ffffff']
+                expect( store.getState().lights.current ).toEqual( expectCurrent )
+            })
 
-            // it('activate one at level', () => {
-            //
-            //     const expectCurrent = [INACTIVE_COLOUR, INACTIVE_COLOUR, 'ffffff', INACTIVE_COLOUR, INACTIVE_COLOUR, INACTIVE_COLOUR]
-            // })
+            it('activate one at level 0', () => {
+                store.dispatch( actions.ledActivate( 'ffffff', 2 ))
+                const expectCurrent = [INACTIVE_COLOUR, INACTIVE_COLOUR, 'ffffff', INACTIVE_COLOUR, INACTIVE_COLOUR, INACTIVE_COLOUR, INACTIVE_COLOUR, INACTIVE_COLOUR]
+                expect( store.getState().lights.current ).toEqual( expectCurrent )
+            })
+
+            it('activate strip', () => {
+                store.dispatch( actions.ledActivate( 'ffffff', 2, true ))
+                const expectCurrent = Array.from(new Array(30), () => 'ffffff')
+                expect( store.getState().frames.current[2] ).toEqual( expectCurrent )
+            })
         })
     })
 })

@@ -9,4 +9,4 @@ for (let i = 0; i < STRIP_COUNT; i++) {
     }
 }
 
-export default [defaultFrame]
+export default defaultFrame
