@@ -72,9 +72,6 @@ export default function ( state, action ) {
 
             break
 
-        case 'FRAME_CURRENT':
-            break
-
         case 'LED_FWD':
 
             if ( ( state.lights.level + 1 ) < LED_COUNT ) {
@@ -132,6 +129,44 @@ export default function ( state, action ) {
             break
 
         case 'LED_DEACTIVATE':
+            // change led lights
+            const modifiedDeactivatedFrame = state.frames.current.map(( strip, sIndex ) => {
+
+                return strip.map(( light, lIndex ) => {
+
+                    // highlight strip
+                    if ( action.strip ) {
+
+                        if ( action.strip === sIndex ) {
+
+                            if ( action.all ) {
+                                // hightlight entire strip
+                                light = INACTIVE_COLOUR
+
+                            } else {
+
+                                if ( state.lights.level === lIndex ) {
+                                    // highlight specific led in strip
+                                    light = INACTIVE_COLOUR
+                                }
+                            }
+                        }
+
+                    } else {
+
+                        if ( lIndex === state.lights.level ) {
+                            light = INACTIVE_COLOUR
+                        }
+                    }
+
+                    return light
+                })
+            })
+
+            // update currently selected
+            state.frames.all[ state.frames.position ] = modifiedDeactivatedFrame.map( strip => strip )
+            state.frames.current = modifiedDeactivatedFrame.map( strip => strip )
+            state.lights.current = modifiedDeactivatedFrame.map(( strip ) => strip[ state.lights.level ] )
             break
 
         case 'RESET':

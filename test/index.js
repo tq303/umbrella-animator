@@ -91,7 +91,7 @@ describe('Redux Reducers', () => {
 
             it('activate loop at level 0', () => {
                 store.dispatch( actions.ledActivate( 'ffffff' ))
-                const expectCurrent = ['ffffff', 'ffffff', 'ffffff', 'ffffff', 'ffffff', 'ffffff', 'ffffff', 'ffffff']
+                const expectCurrent = Array.from(new Array(8), () => 'ffffff')
                 expect( store.getState().lights.current ).toEqual( expectCurrent )
             })
 
@@ -104,6 +104,34 @@ describe('Redux Reducers', () => {
             it('activate strip', () => {
                 store.dispatch( actions.ledActivate( 'ffffff', 2, true ))
                 const expectCurrent = Array.from(new Array(30), () => 'ffffff')
+                expect( store.getState().frames.current[2] ).toEqual( expectCurrent )
+            })
+        })
+
+        describe('#deactivate', () => {
+
+            beforeEach(() => {
+                store.dispatch( actions.reset() )
+            })
+
+            it('deactivate loop at level 0', () => {
+                store.dispatch( actions.ledActivate( 'ffffff' ))
+                store.dispatch( actions.ledDeactivate())
+                const expectCurrent = Array.from(new Array(8), () => INACTIVE_COLOUR)
+                expect( store.getState().lights.current ).toEqual( expectCurrent )
+            })
+
+            it('activate one at level 0', () => {
+                store.dispatch( actions.ledActivate( 'ffffff' ))
+                store.dispatch( actions.ledDeactivate( 2 ))
+                const expectCurrent = ['ffffff', 'ffffff', INACTIVE_COLOUR, 'ffffff', 'ffffff', 'ffffff', 'ffffff', 'ffffff']
+                expect( store.getState().lights.current ).toEqual( expectCurrent )
+            })
+
+            it('deactivate strip', () => {
+                store.dispatch( actions.ledActivate( 'ffffff', 2, true ))
+                store.dispatch( actions.ledDeactivate( 2, true ))
+                const expectCurrent = Array.from(new Array(30), () => INACTIVE_COLOUR)
                 expect( store.getState().frames.current[2] ).toEqual( expectCurrent )
             })
         })
