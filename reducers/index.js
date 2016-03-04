@@ -38,7 +38,7 @@ export default function ( state, action ) {
 
                 state.frames.all = [
                     ...state.frames.all.splice( 0, action.position ),
-                    ...state.frames.all, defaultFrame.map( strip => strip ),
+                    ...state.frames.all, defaultFrame,
                     ...state.frames.all.splice( action.position + 1 )
                 ]
             }
