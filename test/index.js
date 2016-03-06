@@ -38,18 +38,15 @@ describe('Redux Reducers', () => {
             })
 
             it('moves position forward', () => {
-                store.dispatch( actions.frameFwd() )
-                expect( store.getState().frames.position ).toEqual( 1 )
+                expect( store.getState().frames.position ).toEqual( 2 )
             })
 
             it('moves position backward', () => {
                 store.dispatch( actions.frameBwd() )
-                expect( store.getState().frames.position ).toEqual( 0 )
+                expect( store.getState().frames.position ).toEqual( 1 )
             })
 
             it('moves position back if frame is removed', () => {
-                store.dispatch( actions.frameFwd() )
-                store.dispatch( actions.frameFwd() )
                 store.dispatch( actions.frameRmv() )
                 expect( store.getState().frames.position ).toEqual( 1 )
             })

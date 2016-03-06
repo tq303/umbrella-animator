@@ -1,9 +1,9 @@
-import { combineReducers } from 'redux'
-
 import defaultFrame from '../constants/defaultFrame'
+import initialState from '../constants/initialState'
+
 import { STRIP_COUNT, LED_COUNT, INACTIVE_COLOUR } from '../constants/ledDefinitions'
 
-export default function ( state, action ) {
+export default function ( state = initialState, action ) {
 
     switch( action.type ) {
 
@@ -11,9 +11,14 @@ export default function ( state, action ) {
 
             if ( ( state.frames.position + 1 ) < state.frames.all.length ) {
 
-                state.frames.position = ( state.frames.position + 1 )
-                state.frames.current = state.frames.all[ state.frames.position ].map( strip => strip )
-
+                return {
+                    ...state,
+                    frames: {
+                        all: state.frames.all.map( frame => frame ),
+                        position: ( state.frames.position + 1 ),
+                        current: state.frames.all[ state.frames.position ].map( strip => strip )
+                    }
+                }
             }
             break
 
@@ -21,52 +26,74 @@ export default function ( state, action ) {
 
             if ( ( state.frames.position - 1 ) >= 0 ) {
 
-                state.frames.position = ( state.frames.position - 1 )
-                state.frames.current = state.frames.all[ state.frames.position ].map( strip => strip )
-
+                return {
+                    ...state,
+                    frames: {
+                        all: state.frames.all.map( frame => frame ),
+                        position: ( state.frames.position - 1 ),
+                        current: state.frames.all[ state.frames.position ].map( strip => strip )
+                    }
+                }
             }
             break
 
         case 'FRAME_ADD':
 
             // can insert at end or into position
-            state.frames.all = [
-                ...state.frames.all.splice( 0, state.frames.position ),
-                ...state.frames.all, defaultFrame,
-                ...state.frames.all.splice( state.frames.position + 1 )
-            ]
-
-            state.frames.current = state.frames.all[ state.frames.position ].map( strip => strip )
-
-            break
+            return {
+                ...state,
+                frames: {
+                    all: [
+                        ...state.frames.all.slice( 0, state.frames.position + 1),
+                        defaultFrame,
+                        ...state.frames.all.slice( state.frames.position + 1 )
+                    ],
+                    position: ( state.frames.position + 1 ),
+                    current: state.frames.all[ state.frames.position ].map( strip => strip )
+                }
+            }
 
         case 'FRAME_REMOVE':
 
-            // can remove at end or into position
-            state.frames.all = [
-                ...state.frames.all.splice( 0, state.frames.position ),
-                ...state.frames.all.splice( state.frames.position + 1 )
-            ]
-
-            if ( state.frames.position >= state.frames.all.length ) {
-                state.frames.position = ( state.frames.all.length - 1 )
+            if ( state.frames.all.length > 1 ) {
+                // can remove at end or into position
+                return {
+                    ...state,
+                    frames: {
+                        all: [
+                            ...state.frames.all.slice( 0, state.frames.position ),
+                            ...state.frames.all.slice( state.frames.position + 1 )
+                        ],
+                        position: ( state.frames.position >= ( state.frames.all.length - 1 ) ) ? ( state.frames.all.length - 1 ) : state.frames.position,
+                        current: state.frames.all[ state.frames.position ].map( strip => strip )
+                    }
+                }
             }
-
-            state.frames.current = state.frames.all[ state.frames.position ].map( strip => strip )
-
             break
 
         case 'LED_UP':
-        
+
             if ( ( state.lights.level + 1 ) < LED_COUNT ) {
-                state.lights.level = ( state.lights.level + 1 )
+
+                return {
+                    ...state,
+                    lights: {
+                        level: ( state.lights.level + 1 )
+                    }
+                }
             }
             break
 
         case 'LED_DWN':
 
             if ( ( state.lights.level - 1 ) >= 0 ) {
-                state.lights.level = ( state.lights.level - 1 )
+
+                return {
+                    ...state,
+                    lights: {
+                        level: ( state.lights.level - 1 )
+                    }
+                }
             }
             break
 
@@ -107,10 +134,20 @@ export default function ( state, action ) {
             })
 
             // update currently selected
-            state.frames.all[ state.frames.position ] = modifiedActivatedFrame.map( strip => strip )
-            state.frames.current = modifiedActivatedFrame.map( strip => strip )
-            state.lights.current = modifiedActivatedFrame.map(( strip ) => strip[ state.lights.level ] )
-            break
+            return {
+                ...state,
+                frames: {
+                    all: [
+                        state.frames.all.splice( 0 , state.frames.position ),
+                        modifiedActivatedFrame,
+                        state.frames.all.splice( state.frames.position + 1 )
+                    ],
+                    current: modifiedActivatedFrame
+                },
+                lights: {
+                    current: modifiedActivatedFrame.map(( strip ) => strip[ state.lights.level ] )
+                }
+            }
 
         case 'LED_DEACTIVATE':
             // change led lights
@@ -148,25 +185,28 @@ export default function ( state, action ) {
             })
 
             // update currently selected
-            state.frames.all[ state.frames.position ] = modifiedDeactivatedFrame.map( strip => strip )
-            state.frames.current = modifiedDeactivatedFrame.map( strip => strip )
-            state.lights.current = modifiedDeactivatedFrame.map(( strip ) => strip[ state.lights.level ] )
-            break
-
-        case 'RESET':
-        default:
-            state = {
+            return {
+                ...state,
                 frames: {
-                    position: 0,
-                    all: [ defaultFrame.map( strip => strip ) ],
-                    current: defaultFrame.map( strip => strip )
+                    all: [
+                        state.frames.all.splice( 0, state.frames.position ),
+                        modifiedDeactivatedFrame,
+                        state.frames.all.splice( state.frames.position + 1 ),
+                    ],
+                    current: modifiedDeactivatedFrame.map( strip => strip ),
+                    position: state.frames.position
                 },
                 lights: {
-                    current: defaultFrame.map( strip => strip[0] ),
-                    level: 0
+                    current: modifiedDeactivatedFrame.map(( strip ) => strip[ state.lights.level ] ),
+                    level: state.lights.level
                 }
             }
-            break
+
+
+        case 'RESET':
+            return {
+                ...initialState
+            }
     }
 
     return state

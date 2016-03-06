@@ -10,7 +10,10 @@ import UIAnimation from './containers/UIAnimation'
 
 import reducers from './reducers'
 
-const store = createStore( reducers )
+const store = createStore(
+    reducers,
+    window.devToolsExtension ? window.devToolsExtension() : undefined
+)
 
 let canvas = new Canvas( 1024, 576, 25 ),
     umbrellas = []
