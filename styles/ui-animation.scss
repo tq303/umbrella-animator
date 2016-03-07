@@ -111,12 +111,18 @@ $container-dimension: 445px;
                         }
 
                         &.hover-animation {
-                            font-size: 62px;
+                            font-size: 59px;
                             z-index: 1;
                             color: #4babbd;
                             opacity: 1;
                             transition: all 400ms;
                             transform: scale(1);
+                            left: 0;
+                            top: 0;
+                        }
+
+                        &.expander {
+
                         }
                     }
                 }
