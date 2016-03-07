@@ -79,7 +79,8 @@ export default function ( state = initialState, action ) {
                     ...state,
                     lights: {
                         ...state.lights,
-                        level: ( state.lights.level + 1 )
+                        level: ( state.lights.level + 1 ),
+                        current: state.frames.all[ state.frames.position ].map( strip => strip[ state.lights.level + 1 ] )
                     }
                 }
             }
@@ -93,14 +94,15 @@ export default function ( state = initialState, action ) {
                     ...state,
                     lights: {
                         ...state.lights,
-                        level: ( state.lights.level - 1 )
+                        level: ( state.lights.level - 1 ),
+                        current: state.frames.all[ state.frames.position ].map( strip => strip[ state.lights.level - 1 ] )
                     }
                 }
             }
             break
 
         case 'LED_ACTIVATE':
-            
+
             // change led lights
             const modifiedActivatedFrame = state.frames.current.map(( strip, sIndex ) => {
 
