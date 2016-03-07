@@ -1,12 +1,14 @@
 $border-colour: #9a9a9a;
 $font-colour: #fff;
 
+$container-dimension: 445px;
+
 #ui-animation {
 
     position: absolute;
     top: 0;
     left: 0;
-    width: 444px;
+    width: $container-dimension;
     border: 1px solid $border-colour;
     color: $font-colour;
 
@@ -58,63 +60,63 @@ $font-colour: #fff;
 
             &.lights {
 
-                width: 100%;
+                position: relative;
+                width:  $container-dimension;
+                height: $container-dimension;
 
-                & > p {
+                & > div {
 
-                    display: table;
-                    table-layout: fixed;
-                    width: 100%;
-                    margin: 0 auto;
-                    height: 44px;
-                    line-height: 44px;
-                    box-sizing: border-box;
+                    position: absolute;
+                    width: 32px;
+                    height: 32px;
+                    line-height: 32px;
+                    text-align: left;
 
-                    &:nth-child(1), &:nth-child(5) {
-                        height: 18px;
-                        line-height: 22px;
-                    }
-
-                    &:nth-child(2), &:nth-child(4) {
-                        padding: 0 80px;
-                    }
-
-                    &:nth-child(3) {
-
-                        height: 90px;
-                        line-height: 86px;
-                        padding: 0 108px;
-
+                    &:hover {
+                        cursor: pointer;
                         & > a {
-                            &:first-child {
-                                text-align: left;
+                            &.indicator {
+                                z-index: 1;
                             }
-                            &:last-child {
-                                text-align: right;
+                            &.hover-animation {
+                                z-index: 2;
+                                display: inline-block;
+                                transform: scale(2);
+                                opacity: 0;
                             }
+                        }
+                    }
+
+                    &.active {
+                        &:before {
+                            content: "\2022";
                         }
                     }
 
                     & > a {
 
-                        display: table-cell;
+                        position: absolute;
+                        font-size: 62px;
+                        width: 32px;
+                        height: 32px;
                         vertical-align: middle;
                         text-align: center;
-                        text-decoration: none;
-                        font-size: 44px;
 
                         &:before {
                             content: "\25e6";
                         }
 
-                        &:hover {
-                            cursor: pointer;
+                        &.indicator {
+                            z-index: 2;
                         }
 
-                        &.active {
-                            &:before {
-                            	content: "\2022";
-                            }
+                        &.hover-animation {
+                            font-size: 62px;
+                            z-index: 1;
+                            color: #4babbd;
+                            opacity: 1;
+                            transition: all 400ms;
+                            transform: scale(1);
                         }
                     }
                 }

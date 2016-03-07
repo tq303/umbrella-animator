@@ -12,11 +12,9 @@ const Lights = () => (
     <div id="ui-lights">
 
         <div className="lights">
-            <p><Light index={ 0 }/></p>
-            <p><Light index={ 7 }/><Light index={ 1 }/></p>
-            <p><Light index={ 6 }/><Light index={ 2 }/></p>
-            <p><Light index={ 5 }/><Light index={ 3 }/></p>
-            <p><Light index={ 4 }/></p>
+            {
+                Array.from(new Array(8), ( a, i ) => <Light index={ i }/>)
+            }
         </div>
 
         <div className="controls">

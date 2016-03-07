@@ -56,7 +56,6 @@ export default function ( state = initialState, action ) {
         case 'FRAME_REMOVE':
 
             if ( state.frames.all.length > 1 ) {
-                console.log(( state.frames.position === ( state.frames.all.length - 1 ) ) ? ( state.frames.all.length - 1 ) : state.frames.position)
                 // can remove at end or into position
                 return {
                     ...state,
