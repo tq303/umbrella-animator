@@ -29,7 +29,7 @@ class Light extends Component {
             }
 
         return (
-            <div style={ position }>
+            <div onClick={ e => this.props.onClick() } style={ position }>
                 <a className="indicator" style={ colour }></a>
                 <a className="hover-animation"></a>
             </div>

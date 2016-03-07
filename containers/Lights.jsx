@@ -23,11 +23,11 @@ class Lights extends Component {
         this.props.setSwatch( colour.hex )
     }
 
-    ledActivate() {
-        this.props.ledActivate( this.props.swatch )
+    ledActivateComponent( strip = false, all = false ) {
+        this.props.ledActivate( this.props.swatch, strip, all )
     }
 
-    ledDeactivate() {
+    ledDeactivateComponent() {
         this.props.ledDeactivate()
     }
 
@@ -36,12 +36,16 @@ class Lights extends Component {
             <div id="ui-lights">
 
                 <div className="lights">
-                    { this.props.current.map(( a, i ) => <Light colour={ a } index={ i }/>) }
+                    {
+                        this.props.current.map(( a, i ) => {
+                            return (<Light colour={ a } index={ i } onClick={ this.ledActivateComponent.bind( this, i ) } />)
+                        })
+                    }
                 </div>
 
                 <div className="controls">
-                    <Btn onClick={ this.ledActivate.bind(this) } className="fa fa-sun-o"/>
-                    <Btn onClick={ this.ledDeactivate.bind(this) } className="fa fa-circle-thin"/>
+                    <Btn onClick={ this.ledActivateComponent.bind(this) } className="fa fa-sun-o"/>
+                    <Btn onClick={ this.ledDeactivateComponent.bind(this) } className="fa fa-circle-thin"/>
                 </div>
 
                 <div className="set-colour">
@@ -61,7 +65,7 @@ const mapStateToProps = ( state, ownProps ) => ({
 })
 
 const mapDispatchToProps = ( dispatch ) => ({
-    ledActivate:   ( colour ) => dispatch( ledActivate( colour ) ),
+    ledActivate:   ( colour, strip, all ) => dispatch( ledActivate( colour, strip, all ) ),
     ledDeactivate: () => dispatch( ledDeactivate() ),
     setSwatch:     ( colour ) => dispatch( setSwatch( colour ) ),
 })

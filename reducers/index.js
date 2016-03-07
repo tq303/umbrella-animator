@@ -109,7 +109,7 @@ export default function ( state = initialState, action ) {
                 return strip.map(( light, lIndex ) => {
 
                     // highlight strip
-                    if ( action.strip ) {
+                    if ( action.strip !== false ) {
 
                         if ( action.strip === sIndex ) {
 
