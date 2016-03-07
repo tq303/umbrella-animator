@@ -47,6 +47,7 @@ describe('Redux Reducers', () => {
             })
 
             it('moves position back if frame is removed', () => {
+                store.dispatch( actions.frameFwd() )
                 store.dispatch( actions.frameRmv() )
                 expect( store.getState().frames.position ).toEqual( 1 )
             })

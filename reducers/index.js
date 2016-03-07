@@ -64,7 +64,7 @@ export default function ( state = initialState, action ) {
                             ...state.frames.all.slice( 0, state.frames.position ),
                             ...state.frames.all.slice( state.frames.position + 1 )
                         ],
-                        position: ( state.frames.position >= ( state.frames.all.length - 1 ) ) ? ( state.frames.all.length - 1 ) : state.frames.position,
+                        position: ( state.frames.position >= ( state.frames.all.length - 2 ) ) ? ( state.frames.all.length - 1 ) : state.frames.position,
                         current: state.frames.all[ state.frames.position ].map( strip => strip )
                     }
                 }
@@ -142,10 +142,11 @@ export default function ( state = initialState, action ) {
                         modifiedActivatedFrame,
                         state.frames.all.splice( state.frames.position + 1 )
                     ],
-                    current: modifiedActivatedFrame
+                    current: modifiedActivatedFrame.map( strip => strip )
                 },
                 lights: {
-                    current: modifiedActivatedFrame.map(( strip ) => strip[ state.lights.level ] )
+                    current: modifiedActivatedFrame.map( strip => strip[ state.lights.level ] ),
+                    level: state.lights.level
                 }
             }
 
@@ -197,7 +198,7 @@ export default function ( state = initialState, action ) {
                     position: state.frames.position
                 },
                 lights: {
-                    current: modifiedDeactivatedFrame.map(( strip ) => strip[ state.lights.level ] ),
+                    current: modifiedDeactivatedFrame.map( strip => strip[ state.lights.level ] ),
                     level: state.lights.level
                 }
             }
