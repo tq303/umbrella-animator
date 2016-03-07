@@ -56,6 +56,7 @@ export default function ( state = initialState, action ) {
         case 'FRAME_REMOVE':
 
             if ( state.frames.all.length > 1 ) {
+                console.log(( state.frames.position === ( state.frames.all.length - 1 ) ) ? ( state.frames.all.length - 1 ) : state.frames.position)
                 // can remove at end or into position
                 return {
                     ...state,
@@ -64,7 +65,7 @@ export default function ( state = initialState, action ) {
                             ...state.frames.all.slice( 0, state.frames.position ),
                             ...state.frames.all.slice( state.frames.position + 1 )
                         ],
-                        position: ( state.frames.position >= ( state.frames.all.length - 2 ) ) ? ( state.frames.all.length - 1 ) : state.frames.position,
+                        position: ( state.frames.position >= ( state.frames.all.length - 2 ) ) ? ( state.frames.all.length - 2 ) : state.frames.position,
                         current: state.frames.all[ state.frames.position ].map( strip => strip )
                     }
                 }
