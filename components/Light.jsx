@@ -19,16 +19,18 @@ class Light extends Component {
         let left = Math.cos(this.radians( (360 / STRIP_COUNT) * this.props.index )) * radius,
             top  = Math.sin(this.radians( (360 / STRIP_COUNT) * this.props.index )) * radius;
 
-        let colour = ( this.props.colour === INACTIVE_COLOUR ) ? 'ffffff' : this.props.colour,
-            style = {
+        let colour   = {
+                color: `#${ ( this.props.colour === INACTIVE_COLOUR ) ? 'ffffff' : this.props.colour }`
+            },
+            position = {
                 top:  `${(( panel / 2 ) + top - 16)}px`,
                 left: `${(( panel / 2 ) + left - 16)}px`,
                 color: `#${ colour }`
             }
 
         return (
-            <div style={ style }>
-                <a className="indicator"></a>
+            <div style={ position }>
+                <a className="indicator" style={ colour }></a>
                 <a className="hover-animation"></a>
             </div>
         )

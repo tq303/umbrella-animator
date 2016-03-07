@@ -57,7 +57,7 @@ Lights.propTypes = {}
 
 const mapStateToProps = ( state, ownProps ) => ({
     current: state.lights.current,
-    swatch:  state.lights.swatch
+    swatch:  state.swatch
 })
 
 const mapDispatchToProps = ( dispatch ) => ({

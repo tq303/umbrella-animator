@@ -100,7 +100,7 @@ export default function ( state = initialState, action ) {
             break
 
         case 'LED_ACTIVATE':
-
+            
             // change led lights
             const modifiedActivatedFrame = state.frames.current.map(( strip, sIndex ) => {
 
@@ -139,11 +139,14 @@ export default function ( state = initialState, action ) {
             return {
                 ...state,
                 frames: {
-                    all: [
-                        state.frames.all.splice( 0 , state.frames.position ),
-                        modifiedActivatedFrame,
-                        state.frames.all.splice( state.frames.position + 1 )
-                    ],
+                    ...state.frames,
+                    all: state.frames.all.map(( frames, index ) => {
+                        if ( index === state.frames.position ) {
+                            return modifiedActivatedFrame
+                        } else {
+                            return frames
+                        }
+                    }),
                     current: modifiedActivatedFrame.map( strip => strip )
                 },
                 lights: {
@@ -192,11 +195,13 @@ export default function ( state = initialState, action ) {
                 ...state,
                 frames: {
                     ...state.frames,
-                    all: [
-                        state.frames.all.splice( 0, state.frames.position ),
-                        modifiedDeactivatedFrame,
-                        state.frames.all.splice( state.frames.position + 1 ),
-                    ],
+                    all: state.frames.all.map(( frames, index ) => {
+                        if ( index === state.frames.position ) {
+                            return modifiedDeactivatedFrame
+                        } else {
+                            return frames
+                        }
+                    }),
                     current: modifiedDeactivatedFrame.map( strip => strip )
                 },
                 lights: {
