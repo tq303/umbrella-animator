@@ -13,14 +13,15 @@ class Light extends Component {
     render() {
 
         const panel  = 445,
-              radius = 180;
+              radius = 160;
 
         let left = Math.cos(this.radians( (360 / 8) * this.props.index )) * radius,
             top  = Math.sin(this.radians( (360 / 8) * this.props.index )) * radius;
 
         let style = {
             top:  `${(( panel / 2 ) + top - 16)}px`,
-            left: `${(( panel / 2 ) + left - 16)}px`
+            left: `${(( panel / 2 ) + left - 16)}px`,
+            color: `#${ this.props.colour }`
         };
 
         return (

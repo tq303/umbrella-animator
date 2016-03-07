@@ -53,24 +53,20 @@ let UIAnimation = ({
 
 UIAnimation.propTypes = {}
 
-const mapStateToProps = ( state, ownProps ) => {
-    return {
-        framesTotal: state.frames.all.length,
-        framePosition: ( state.frames.position + 1 ),
-        ledLevel: ( state.lights.level + 1 )
-    }
-}
+const mapStateToProps = ( state, ownProps ) => ({
+    framesTotal: state.frames.all.length,
+    framePosition: ( state.frames.position + 1 ),
+    ledLevel: ( state.lights.level + 1 )
+})
 
-const mapDispatchToProps = ( dispatch, ownProps ) => {
-    return {
-        frameFwd: () => dispatch( frameFwd() ),
-        frameBwd: () => dispatch( frameBwd() ),
-        frameAdd: () => dispatch( frameAdd() ),
-        frameRmv: () => dispatch( frameRmv() ),
-        ledUp:    () => dispatch( ledUp() ),
-        ledDwn:   () => dispatch( ledDwn() ),
-    }
-}
+const mapDispatchToProps = ( dispatch, ownProps ) => ({
+    frameFwd: () => dispatch( frameFwd() ),
+    frameBwd: () => dispatch( frameBwd() ),
+    frameAdd: () => dispatch( frameAdd() ),
+    frameRmv: () => dispatch( frameRmv() ),
+    ledUp:    () => dispatch( ledUp() ),
+    ledDwn:   () => dispatch( ledDwn() ),
+})
 
 UIAnimation = connect( mapStateToProps, mapDispatchToProps )( UIAnimation )
 
