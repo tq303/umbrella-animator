@@ -16,7 +16,7 @@ const Lights = (
 
         <div className="lights">
             {
-                Array.from(new Array(8), ( a, i ) => <Light swatchColour={ 'ff0000' } colour={ current[ i ] } index={ i }/>)
+                Array.from(new Array(8), ( a, i ) => <Light colour={ current[ i ] } index={ i }/>)
             }
         </div>
 

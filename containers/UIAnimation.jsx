@@ -14,7 +14,7 @@ import { frameFwd, frameBwd, frameAdd, frameRmv, ledUp, ledDwn } from '../action
 require('../styles/style.scss');
 
 // UI
-let UIAnimation = ({
+const UIAnimation = ({
     framesTotal,
     framePosition,
     ledLevel,
@@ -68,6 +68,4 @@ const mapDispatchToProps = ( dispatch, ownProps ) => ({
     ledDwn:   () => dispatch( ledDwn() ),
 })
 
-UIAnimation = connect( mapStateToProps, mapDispatchToProps )( UIAnimation )
-
-export default UIAnimation
+export default connect( mapStateToProps, mapDispatchToProps )( UIAnimation )

@@ -135,7 +135,6 @@ export default function ( state = initialState, action ) {
 
             // update currently selected
             return {
-                ...state,
                 frames: {
                     all: [
                         state.frames.all.splice( 0 , state.frames.position ),
@@ -187,7 +186,6 @@ export default function ( state = initialState, action ) {
 
             // update currently selected
             return {
-                ...state,
                 frames: {
                     all: [
                         state.frames.all.splice( 0, state.frames.position ),
