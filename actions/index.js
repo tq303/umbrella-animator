@@ -43,3 +43,8 @@ export const ledDeactivate = ( strip = false, all = false ) => ({
     strip,
     all
 })
+
+export const setSwatch = ( swatch = INACTIVE_COLOUR ) => ({
+    type: 'SET_SWATCH',
+    swatch
+})

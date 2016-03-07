@@ -46,7 +46,7 @@ const UIAnimation = ({
 
         <p><DisplayNumber value={ ledLevel } /></p>
 
-        <Lights/>
+        <Lights />
 
     </div>
 );
@@ -54,9 +54,9 @@ const UIAnimation = ({
 UIAnimation.propTypes = {}
 
 const mapStateToProps = ( state, ownProps ) => ({
-    framesTotal: state.frames.all.length,
+    framesTotal:   state.frames.all.length,
     framePosition: ( state.frames.position + 1 ),
-    ledLevel: ( state.lights.level + 1 )
+    ledLevel:      ( state.lights.level + 1 )
 })
 
 const mapDispatchToProps = ( dispatch, ownProps ) => ({

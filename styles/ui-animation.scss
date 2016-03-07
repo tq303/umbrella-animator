@@ -87,11 +87,6 @@ $container-dimension: 445px;
                         }
                     }
 
-                    &.active {
-                        &:before {
-                            content: "\2022";
-                        }
-                    }
 
                     & > a {
 
@@ -106,6 +101,12 @@ $container-dimension: 445px;
                             content: "\25e6";
                         }
 
+                        &.active {
+                            &:before {
+                                content: "\2022";
+                            }
+                        }
+                        
                         &.indicator {
                             z-index: 2;
                         }

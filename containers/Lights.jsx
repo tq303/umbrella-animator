@@ -1,45 +1,69 @@
-import React, { PropTypes } from 'react';
+import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux'
 import ColorPicker from 'react-color';
 
 import Light from '../components/Light';
-
 import Btn from '../components/Button'
 
-import { ledActivate, ledDeactivate } from '../actions'
+import { ledActivate, ledDeactivate, setSwatch } from '../actions'
 
-const Lights = (
-    current,
-    ledActivate
-) => (
-    <div id="ui-lights">
+import { INACTIVE_COLOUR } from '../constants/ledDefinitions'
 
-        <div className="lights">
-            {
-                Array.from(new Array(8), ( a, i ) => <Light colour={ current[ i ] } index={ i }/>)
-            }
-        </div>
+class Lights extends Component {
 
-        <div className="controls">
-            <Btn onClick={ ledActivate } className="fa fa-sun-o"/>
-            <Btn className="fa fa-circle-thin"/>
-        </div>
+    constructor( props ) {
+        super( props )
 
-        <div className="set-colour">
-            <ColorPicker type="slider"/>
-        </div>
+        this.state = {
+            swatch: INACTIVE_COLOUR
+        }
+    }
 
-    </div>
-);
+    colourChange( colour ) {
+        this.props.setSwatch( colour.hex )
+    }
+
+    ledActivate() {
+        this.props.ledActivate( this.props.swatch )
+    }
+
+    ledDeactivate() {
+        this.props.ledDeactivate()
+    }
+
+    render() {
+        return (
+            <div id="ui-lights">
+
+                <div className="lights">
+                    { this.props.current.map(( a, i ) => <Light colour={ a } index={ i }/>) }
+                </div>
+
+                <div className="controls">
+                    <Btn onClick={ this.ledActivate.bind(this) } className="fa fa-sun-o"/>
+                    <Btn onClick={ this.ledDeactivate.bind(this) } className="fa fa-circle-thin"/>
+                </div>
+
+                <div className="set-colour">
+                    <ColorPicker onChangeComplete={ this.colourChange.bind(this) } type="slider"/>
+                </div>
+
+            </div>
+        )
+    }
+}
 
 Lights.propTypes = {}
 
-const mapStateToProps    = ( state ) => ({
-    current: state.lights.current
+const mapStateToProps = ( state, ownProps ) => ({
+    current: state.lights.current,
+    swatch:  state.lights.swatch
 })
 
 const mapDispatchToProps = ( dispatch ) => ({
-    ledActivate: () => dispatch( ledActivate() )
+    ledActivate:   ( colour ) => dispatch( ledActivate( colour ) ),
+    ledDeactivate: () => dispatch( ledDeactivate() ),
+    setSwatch:     ( colour ) => dispatch( setSwatch( colour ) ),
 })
 
 export default connect( mapStateToProps, mapDispatchToProps )( Lights );

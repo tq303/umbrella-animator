@@ -78,6 +78,7 @@ export default function ( state = initialState, action ) {
                 return {
                     ...state,
                     lights: {
+                        ...state.lights,
                         level: ( state.lights.level + 1 )
                     }
                 }
@@ -91,6 +92,7 @@ export default function ( state = initialState, action ) {
                 return {
                     ...state,
                     lights: {
+                        ...state.lights,
                         level: ( state.lights.level - 1 )
                     }
                 }
@@ -135,6 +137,7 @@ export default function ( state = initialState, action ) {
 
             // update currently selected
             return {
+                ...state,
                 frames: {
                     all: [
                         state.frames.all.splice( 0 , state.frames.position ),
@@ -144,8 +147,8 @@ export default function ( state = initialState, action ) {
                     current: modifiedActivatedFrame.map( strip => strip )
                 },
                 lights: {
+                    ...state.lights,
                     current: modifiedActivatedFrame.map( strip => strip[ state.lights.level ] ),
-                    level: state.lights.level
                 }
             }
 
@@ -186,21 +189,28 @@ export default function ( state = initialState, action ) {
 
             // update currently selected
             return {
+                ...state,
                 frames: {
+                    ...state.frames,
                     all: [
                         state.frames.all.splice( 0, state.frames.position ),
                         modifiedDeactivatedFrame,
                         state.frames.all.splice( state.frames.position + 1 ),
                     ],
-                    current: modifiedDeactivatedFrame.map( strip => strip ),
-                    position: state.frames.position
+                    current: modifiedDeactivatedFrame.map( strip => strip )
                 },
                 lights: {
+                    ...state.lights,
                     current: modifiedDeactivatedFrame.map( strip => strip[ state.lights.level ] ),
-                    level: state.lights.level
                 }
             }
 
+
+        case 'SET_SWATCH':
+            return {
+                ...state,
+                swatch: action.swatch
+            }
 
         case 'RESET':
             return {

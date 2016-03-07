@@ -1,4 +1,5 @@
 import defaultFrame from './defaultFrame'
+import { INACTIVE_COLOUR } from './ledDefinitions'
 
 export default {
     frames: {
@@ -9,5 +10,6 @@ export default {
     lights: {
         current: defaultFrame.map( strip => strip[0] ),
         level: 0
-    }
+    },
+    swatch: INACTIVE_COLOUR
 }
