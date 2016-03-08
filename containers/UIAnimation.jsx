@@ -29,6 +29,14 @@ class UIAnimation extends Component {
             case 'ArrowRight':
                     this.props.ledArrayRotateRight()
                 break;
+
+            case 'ArrowUp':
+                    this.props.ledUp()
+                break;
+
+            case 'ArrowDown':
+                    this.props.ledDwn()
+                break;
         }
     }
 

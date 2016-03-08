@@ -7,8 +7,52 @@ import { STRIP_COUNT, INACTIVE_COLOUR } from '../constants/ledDefinitions'
 
 class Light extends Component {
 
+    constructor( props ) {
+        super( props )
+
+        this.state = {
+            animationClass: 'select-animation',
+            enabled: false
+        }
+    }
+
     radians( degrees ) {
         return degrees * (Math.PI / 180);
+    }
+
+    componentWillReceiveProps( newProps ) {
+
+        if ( newProps.colour !== INACTIVE_COLOUR && !this.state.enabled ) {
+
+            console.log('asdfsad')
+
+            this.setState({
+                animationClass: 'select-animation show',
+                enabled: true
+            })
+
+            window.setTimeout(()=> {
+
+                this.setState({
+                    animationClass: 'select-animation show animate'
+                })
+
+                window.setTimeout(()=> {
+
+                    this.setState({
+                        animationClass: 'select-animation'
+                    })
+
+                }, 500)
+
+            }, 0)
+        } else if (this.state.enabled) {
+
+            this.setState({
+                enable: false
+            })
+
+        }
     }
 
     render() {
@@ -31,7 +75,7 @@ class Light extends Component {
         return (
             <div onClick={ e => this.props.onClick() } style={ position }>
                 <a className="indicator" style={ colour }></a>
-                <a className="hover-animation"></a>
+                <a className={ this.state.animationClass } style={ colour }></a>
             </div>
         )
     }

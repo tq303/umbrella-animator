@@ -76,17 +76,6 @@ $container-dimension: 445px;
 
                     &:hover {
                         cursor: pointer;
-                        & > a {
-                            &.indicator {
-                                z-index: 1;
-                            }
-                            &.hover-animation {
-                                z-index: 2;
-                                display: inline-block;
-                                transform: scale(2);
-                                opacity: 0;
-                            }
-                        }
                     }
 
 
@@ -110,18 +99,27 @@ $container-dimension: 445px;
                         }
 
                         &.indicator {
-                            z-index: 2;
+                            z-index: 1;
                         }
 
-                        &.hover-animation {
+                        &.select-animation {
                             font-size: 59px;
-                            z-index: 1;
-                            color: #4babbd;
+                            z-index: 2;
                             opacity: 1;
                             transition: all 400ms;
                             transform: scale(1);
                             left: 0;
                             top: 0;
+                            display: none;
+
+                            &.show {
+                                display: inline-block;
+                            }
+
+                            &.animate {
+                                opacity: 0;
+                                transform: scale(2);
+                            }
                         }
 
                         &.expander {
