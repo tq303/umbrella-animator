@@ -48,3 +48,11 @@ export const setSwatch = ( swatch = INACTIVE_COLOUR ) => ({
     type: 'SET_SWATCH',
     swatch
 })
+
+export const ledArrayRotateLeft = () => ({
+    type: 'LED_ARRAY_ROTATE_LEFT'
+})
+
+export const ledArrayRotateRight = () => ({
+    type: 'LED_ARRAY_ROTATE_RIGHT'
+})

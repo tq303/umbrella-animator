@@ -1,4 +1,4 @@
-import React, { PropTypes } from 'react'
+import React, { Component, PropTypes } from 'react'
 import { connect } from 'react-redux'
 
 // containers
@@ -9,47 +9,59 @@ import Btn from '../components/Button'
 import DisplayNumber from '../components/DisplayNumber'
 
 // actions
-import { frameFwd, frameBwd, frameAdd, frameRmv, ledUp, ledDwn } from '../actions'
+import { frameFwd, frameBwd, frameAdd, frameRmv, ledUp, ledDwn, ledArrayRotateLeft, ledArrayRotateRight } from '../actions'
 
 require('../styles/style.scss');
 
 // UI
-const UIAnimation = ({
-    framesTotal,
-    framePosition,
-    ledLevel,
-    frameFwd,
-    frameBwd,
-    frameAdd,
-    frameRmv,
-    ledUp,
-    ledDwn
-}) => (
-    <div id="cycle">
+class UIAnimation extends Component {
 
-        <div>
-            <Btn onClick={ frameBwd } className="fa fa-step-backward"/>
-            <Btn onClick={ frameFwd } className="fa fa-step-forward"/>
-        </div>
+    componentDidMount() {
+        document.addEventListener("keydown", this.handleKeyEvent.bind(this), true)
+    }
 
-        <p><DisplayNumber value={ framePosition } />/<DisplayNumber value={ framesTotal }/></p>
+    handleKeyEvent( e ) {
+        switch ( e.code ) {
+            case 'ArrowLeft':
+                    this.props.ledArrayRotateLeft()
+                break;
 
-        <div>
-            <Btn onClick={ frameAdd } className="fa fa-plus"/>
-            <Btn onClick={ frameRmv } className="fa fa-minus"/>
-        </div>
+            case 'ArrowRight':
+                    this.props.ledArrayRotateRight()
+                break;
+        }
+    }
 
-        <div>
-            <Btn onClick={ ledUp } className="fa fa-arrow-up"/>
-            <Btn onClick={ ledDwn } className="fa fa-arrow-down"/>
-        </div>
+    render() {
+        return (
+            <div id="cycle">
 
-        <p><DisplayNumber value={ ledLevel } /></p>
+                <div>
+                    <Btn onClick={ this.props.frameBwd } className="fa fa-step-backward"/>
+                    <Btn onClick={ this.props.frameFwd } className="fa fa-step-forward"/>
+                </div>
 
-        <Lights />
+                <p><DisplayNumber value={ this.props.framePosition } />/<DisplayNumber value={ this.props.framesTotal }/></p>
 
-    </div>
-);
+                <div>
+                    <Btn onClick={ this.props.frameAdd } className="fa fa-plus"/>
+                    <Btn onClick={ this.props.frameRmv } className="fa fa-minus"/>
+                </div>
+
+                <div>
+                    <Btn onClick={ this.props.ledUp } className="fa fa-arrow-up"/>
+                    <Btn onClick={ this.props.ledDwn } className="fa fa-arrow-down"/>
+                </div>
+
+                <p><DisplayNumber value={ this.props.ledLevel } /></p>
+
+                <Lights />
+
+            </div>
+        )
+    }
+
+}
 
 UIAnimation.propTypes = {}
 
@@ -66,6 +78,8 @@ const mapDispatchToProps = ( dispatch, ownProps ) => ({
     frameRmv: () => dispatch( frameRmv() ),
     ledUp:    () => dispatch( ledUp() ),
     ledDwn:   () => dispatch( ledDwn() ),
+    ledArrayRotateLeft: ()=> dispatch( ledArrayRotateLeft() ),
+    ledArrayRotateRight: ()=> dispatch( ledArrayRotateRight() )
 })
 
 export default connect( mapStateToProps, mapDispatchToProps )( UIAnimation )

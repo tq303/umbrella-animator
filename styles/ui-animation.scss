@@ -63,6 +63,8 @@ $container-dimension: 445px;
                 position: relative;
                 width:  $container-dimension;
                 height: $container-dimension;
+                transform: rotateZ(0);
+                transition: all 300ms;
 
                 & > div {
 
@@ -106,7 +108,7 @@ $container-dimension: 445px;
                                 content: "\2022";
                             }
                         }
-                        
+
                         &.indicator {
                             z-index: 2;
                         }

@@ -17,6 +17,11 @@ class Lights extends Component {
         this.state = {
             swatch: INACTIVE_COLOUR
         }
+
+        window.addEventListener('keydown', ( e )=> {
+            console.log( e )
+        })
+
     }
 
     colourChange( colour ) {
@@ -32,10 +37,15 @@ class Lights extends Component {
     }
 
     render() {
+
+        let style = {
+            transform: `rotateZ(${ this.props.rotate }deg)`
+        }
+
         return (
             <div id="ui-lights">
 
-                <div className="lights">
+                <div className="lights" style={ style } >
                     {
                         this.props.current.map(( a, i ) => {
                             return (<Light colour={ a } index={ i } onClick={ this.ledActivateComponent.bind( this, i ) } />)
@@ -61,6 +71,7 @@ Lights.propTypes = {}
 
 const mapStateToProps = ( state, ownProps ) => ({
     current: state.lights.current,
+    rotate:  state.lights.rotate,
     swatch:  state.swatch
 })
 

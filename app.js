@@ -39,3 +39,5 @@ render (
 )
 
 // store.subscribe(()=> { console.log('store updated') })
+
+window.dispatchEvent(new Event('resize'))

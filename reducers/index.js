@@ -212,6 +212,23 @@ export default function ( state = initialState, action ) {
                 }
             }
 
+        case 'LED_ARRAY_ROTATE_LEFT':
+            return {
+                ...state,
+                lights: {
+                    ...state.lights,
+                    rotate: state.lights.rotate - ( 360 / STRIP_COUNT )
+                }
+            }
+
+        case 'LED_ARRAY_ROTATE_RIGHT':
+            return {
+                ...state,
+                lights: {
+                    ...state.lights,
+                    rotate: state.lights.rotate + ( 360 / STRIP_COUNT )
+                }
+            }
 
         case 'SET_SWATCH':
             return {
