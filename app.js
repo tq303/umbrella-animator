@@ -15,14 +15,13 @@ const store = createStore(
     window.devToolsExtension ? window.devToolsExtension() : undefined
 )
 
-let canvas = new Canvas( 1024, 576, 25 ),
-    umbrellas = []
+let canvas    = new Canvas( 1024, 576, 25 ),
+    umbrella  = new Umbrella({ x: 0, y: 0 });
 
 // add single umbrella
-umbrellas[0] = new Umbrella({ x: 0, y: 0 })
-// canvas.scene.add( umbrellas[0] )
+canvas.scene.add( umbrella )
 
-let animator = new Animator( umbrellas )
+let animator = new Animator( umbrella )
 
 // resize logic
 window.addEventListener("resize", ()=> {
@@ -38,6 +37,8 @@ render (
     document.getElementById('ui-animation')
 )
 
-// store.subscribe(()=> { console.log('store updated') })
+store.subscribe(()=> {
+    umbrella.updateColour( store.getState().frames.current )
+})
 
 window.dispatchEvent(new Event('resize'))

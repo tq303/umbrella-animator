@@ -24,8 +24,6 @@ class Light extends Component {
 
         if ( newProps.colour !== INACTIVE_COLOUR && !this.state.enabled ) {
 
-            console.log('asdfsad')
-
             this.setState({
                 animationClass: 'select-animation show',
                 enabled: true

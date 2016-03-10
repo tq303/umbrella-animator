@@ -15,13 +15,8 @@ class Lights extends Component {
         super( props )
 
         this.state = {
-            swatch: INACTIVE_COLOUR
+            animateClass: ''
         }
-
-        window.addEventListener('keydown', ( e )=> {
-            console.log( e )
-        })
-
     }
 
     colourChange( colour ) {
@@ -34,6 +29,14 @@ class Lights extends Component {
 
     ledDeactivateComponent() {
         this.props.ledDeactivate()
+    }
+
+    componentWillReceiveProps( newProps ) {
+        if ( newProps.level > this.props.level ) {
+            console.log('animate up')
+        } else if ( newProps.level < this.props.level ) {
+            console.log('animate down')
+        }
     }
 
     render() {
@@ -53,6 +56,8 @@ class Lights extends Component {
                     }
                 </div>
 
+
+
                 <div className="controls">
                     <Btn onClick={ this.ledActivateComponent.bind(this) } className="fa fa-sun-o"/>
                     <Btn onClick={ this.ledDeactivateComponent.bind(this) } className="fa fa-circle-thin"/>
@@ -70,6 +75,7 @@ class Lights extends Component {
 Lights.propTypes = {}
 
 const mapStateToProps = ( state, ownProps ) => ({
+    level:   state.lights.level,
     current: state.lights.current,
     rotate:  state.lights.rotate,
     swatch:  state.swatch

@@ -20,6 +20,10 @@ class UIAnimation extends Component {
         document.addEventListener("keydown", this.handleKeyEvent.bind(this), true)
     }
 
+    componentWillUnmount() {
+        document.removeEventListener("keydown")
+    }
+
     handleKeyEvent( e ) {
         switch ( e.code ) {
             case 'ArrowLeft':
@@ -62,7 +66,7 @@ class UIAnimation extends Component {
                 </div>
 
                 <p><DisplayNumber value={ this.props.ledLevel } /></p>
-
+                
                 <Lights />
 
             </div>
