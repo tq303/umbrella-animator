@@ -42,6 +42,7 @@ class Light extends Component {
                 }, 500)
 
             }, 0)
+            
         } else if (this.state.enabled) {
 
             this.setState({
@@ -58,14 +59,16 @@ class Light extends Component {
         let left = Math.cos(this.radians( 360 - (360 / STRIP_COUNT) * this.props.index )) * radius,
             top  = Math.sin(this.radians( 360 - (360 / STRIP_COUNT) * this.props.index )) * radius;
 
-        let colour   = {
-                color: `#${ ( this.props.colour === INACTIVE_COLOUR ) ? 'ffffff' : this.props.colour }`
-            },
-            position = {
+        let position = {
                 top:  `${(( panel / 2 ) + top - 16)}px`,
-                left: `${(( panel / 2 ) + left - 16)}px`,
-                color: `#${ colour }`
+                left: `${(( panel / 2 ) + left - 16)}px`
             }
+
+        let colour = {};
+
+        if ( this.props.colour !== INACTIVE_COLOUR ) {
+            colour.color = `#${ this.props.colour }`
+        }
 
         return (
             <div onClick={ e => this.props.onClick() } style={ position }>
