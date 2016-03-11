@@ -1,7 +1,13 @@
-$border-colour: #9a9a9a;
 $font-colour: #fff;
 
+$button-colour: #222;
+$button-border: #3C3C3C;
+$button-outer-border: #122;
+$background: #122;
+
 $container-dimension: 320px;
+
+$button-size: 51px;
 
 #ui-animation {
 
@@ -9,18 +15,18 @@ $container-dimension: 320px;
     top: 0;
     left: 0;
     width: $container-dimension;
-    border: 1px solid $border-colour;
     color: $font-colour;
+    background: $background;
 
     button {
-        background: transparent;
-        border: 1px solid $border-colour;
+        background: $button-colour;
+        border: 1px solid $button-border;
         border-radius: 32px;
         color: $font-colour;
-        padding: 0 12px;
+        padding: 0 ( $button-size / 3 );
         box-sizing: border-box;
-        width: 38px;
-        height: 38px;
+        width: $button-size;
+        height: $button-size;
         text-align: center;
     }
 
@@ -86,7 +92,7 @@ $container-dimension: 320px;
 
                 &.controls {
                     button {
-                        margin: 21px;
+                        margin: 14px;
                         font-size: 16px;
                         line-height: 18px;
                         text-align: center;
@@ -186,5 +192,4 @@ $container-dimension: 320px;
             }
         }
     }
-
 }
