@@ -1,8 +1,6 @@
 import React, { Component, PropTypes } from 'react';
 
-// className={ this.state.activeClass }
-// style={ this.state.activeStyle }
-// onClick={ this.toggleActive.bind(this) }
+
 import { STRIP_COUNT, INACTIVE_COLOUR } from '../constants/ledDefinitions'
 
 class Light extends Component {
@@ -54,8 +52,8 @@ class Light extends Component {
 
     render() {
 
-        const panel  = 445,
-              radius = 160;
+        const panel  = 320,
+              radius = 120;
 
         let left = Math.cos(this.radians( 360 - (360 / STRIP_COUNT) * this.props.index )) * radius,
             top  = Math.sin(this.radians( 360 - (360 / STRIP_COUNT) * this.props.index )) * radius;

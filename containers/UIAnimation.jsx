@@ -48,21 +48,22 @@ class UIAnimation extends Component {
         return (
             <div id="cycle">
 
-                <div>
+                <div className="controls">
                     <Btn onClick={ this.props.frameBwd } className="fa fa-step-backward"/>
                     <Btn onClick={ this.props.frameFwd } className="fa fa-step-forward"/>
                 </div>
 
                 <p><DisplayNumber value={ this.props.framePosition } />/<DisplayNumber value={ this.props.framesTotal }/></p>
 
-                <div>
-                    <Btn onClick={ this.props.frameAdd } className="fa fa-plus"/>
-                    <Btn onClick={ this.props.frameRmv } className="fa fa-minus"/>
-                </div>
-
-                <div>
-                    <Btn onClick={ this.props.ledUp } className="fa fa-arrow-up"/>
-                    <Btn onClick={ this.props.ledDwn } className="fa fa-arrow-down"/>
+                <div className="controls grouped">
+                    <div>
+                        <Btn onClick={ this.props.ledUp } className="fa fa-arrow-up"/>
+                        <Btn onClick={ this.props.ledDwn } className="fa fa-arrow-down"/>
+                    </div>
+                    <div>
+                        <Btn onClick={ this.props.frameAdd } className="fa fa-plus"/>
+                        <Btn onClick={ this.props.frameRmv } className="fa fa-minus"/>
+                    </div>
                 </div>
 
                 <p><DisplayNumber value={ this.props.ledLevel } /></p>

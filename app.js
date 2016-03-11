@@ -19,7 +19,7 @@ let canvas    = new Canvas( 1024, 576, 25 ),
     umbrella  = new Umbrella({ x: 0, y: 0 });
 
 // add single umbrella
-canvas.scene.add( umbrella )
+// canvas.scene.add( umbrella )
 
 let animator = new Animator( umbrella )
 
