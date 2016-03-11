@@ -1,6 +1,6 @@
 import THREE, { Object3D } from 'three';
 
-import { STRIP_COUNT, LED_COUNT, INACTIVE_COLOUR } from '../constants/ledDefinitions'
+import { STRIP_COUNT, LED_COUNT, INACTIVE_COLOUR, INACTIVE_SPHERE_COLOUR } from '../constants/ledDefinitions'
 
 class Umbrella extends Object3D {
 
@@ -9,7 +9,7 @@ class Umbrella extends Object3D {
 
         // setup variables
         this.ledDistance   = 1;
-        this.loopPosition  = 0;
+        this.loopPosition  = 4;
 
         // material & geometry
         this.material = {
@@ -75,10 +75,10 @@ class Umbrella extends Object3D {
             circle;
 
         // loop each light position at z-index relative to led position
-        for (let i = 0; i < STRIP_COUNT; i++) {
+        for (let i = 0; i < 360; i++) {
 
-            let x  = Math.cos(this.radians((360 / STRIP_COUNT) * i)),
-                y  = Math.sin(this.radians((360 / STRIP_COUNT) * i)),
+            let x  = Math.cos(this.radians( i )),
+                y  = Math.sin(this.radians( i )),
                 _x = x * ( this.ledDistance * position ),
                 _y = y * ( this.ledDistance * position );
 
@@ -86,8 +86,8 @@ class Umbrella extends Object3D {
         }
 
         // close loop
-        let x  = Math.cos(this.radians((360 / STRIP_COUNT) * 0)),
-            y  = Math.sin(this.radians((360 / STRIP_COUNT) * 0)),
+        let x  = Math.cos(this.radians( 0 )),
+            y  = Math.sin(this.radians( 0 )),
             _x = x * ( this.ledDistance * position ),
             _y = y * ( this.ledDistance * position );
 
@@ -140,7 +140,7 @@ class Umbrella extends Object3D {
                 _angle = (( 90 / LED_COUNT ) * i ) + 45,
                 _z     = Math.cos(this.radians(_angle)) * ( this.ledDistance * i );
 
-            lights[i - 1] = new THREE.Mesh( geometry, new THREE.MeshLambertMaterial( { color: parseInt( INACTIVE_COLOUR, 16 ) } ) );
+            lights[i - 1] = new THREE.Mesh( geometry, new THREE.MeshLambertMaterial( { color: parseInt( INACTIVE_SPHERE_COLOUR, 16 ) } ) );
             lights[i - 1].position.set( _x, _y, _z );
 
             this.add( lights[i - 1] );
@@ -158,7 +158,11 @@ class Umbrella extends Object3D {
         for ( let i = 0; i < STRIP_COUNT; i++ ) {
             for ( let j = 0; j < LED_COUNT; j++) {
 
-                this.umbrella.arms[i].lights[j].material.color.setHex( parseInt( frame[i][j], 16 ) )
+                if ( frame[i][j] === INACTIVE_COLOUR ) {
+                    this.umbrella.arms[i].lights[j].material.color.setHex( parseInt( INACTIVE_SPHERE_COLOUR, 16 ) )
+                } else {
+                    this.umbrella.arms[i].lights[j].material.color.setHex( parseInt( frame[i][j], 16 ) )
+                }
             }
         }
     }
