@@ -9,10 +9,12 @@ class Umbrella extends Object3D {
 
         // setup variables
         this.ledDistance   = 1;
+        this.loopPosition  = 0;
 
         // material & geometry
         this.material = {
-            line: new THREE.LineBasicMaterial({ color: 0xdd00ff })
+            line: new THREE.LineBasicMaterial({ color: 0xdd00ff }),
+            loop: new THREE.LineBasicMaterial({ color: 0x17EFDA })
         };
 
         this.light = {
@@ -26,6 +28,7 @@ class Umbrella extends Object3D {
 
     simpleUmbrellaObject() {
         return {
+            loop: null,
             arms: []
         }
     }
@@ -40,6 +43,9 @@ class Umbrella extends Object3D {
     create() {
 
         let umbrella = this.simpleUmbrellaObject();
+
+
+        umbrella.loop = this.setLoopPosition( this.loopPosition );
 
         // build arms and lights
         for (let i = 0; i < STRIP_COUNT; i++) {
@@ -57,6 +63,41 @@ class Umbrella extends Object3D {
         this.add( this.light.point );
 
         return umbrella;
+    }
+
+    setLoopPosition( position ) {
+
+        position = position + 1;
+
+        let loop   = new THREE.Geometry(),
+            _angle = (( 90 / LED_COUNT ) * position ) + 45,
+            _z     = Math.cos(this.radians(_angle)) * ( this.ledDistance * position ),
+            circle;
+
+        // loop each light position at z-index relative to led position
+        for (let i = 0; i < STRIP_COUNT; i++) {
+
+            let x  = Math.cos(this.radians((360 / STRIP_COUNT) * i)),
+                y  = Math.sin(this.radians((360 / STRIP_COUNT) * i)),
+                _x = x * ( this.ledDistance * position ),
+                _y = y * ( this.ledDistance * position );
+
+            loop.vertices.push(new THREE.Vector3(_x, _y, _z));
+        }
+
+        // close loop
+        let x  = Math.cos(this.radians((360 / STRIP_COUNT) * 0)),
+            y  = Math.sin(this.radians((360 / STRIP_COUNT) * 0)),
+            _x = x * ( this.ledDistance * position ),
+            _y = y * ( this.ledDistance * position );
+
+        loop.vertices.push(new THREE.Vector3(_x, _y, _z));
+
+        circle = new THREE.Line( loop, this.material.loop );
+
+        this.add( circle );
+
+        return circle;
     }
 
     createArm( angle ) {
@@ -118,9 +159,13 @@ class Umbrella extends Object3D {
             for ( let j = 0; j < LED_COUNT; j++) {
 
                 this.umbrella.arms[i].lights[j].material.color.setHex( parseInt( frame[i][j], 16 ) )
-                this.umbrella.arms[i].lights[j].geometry.colorsNeedUpdate = true
             }
         }
+    }
+
+    updateLedPosition( position ) {
+        this.remove( this.umbrella.loop );
+        this.umbrella.loop = this.setLoopPosition( position )
     }
 
 }

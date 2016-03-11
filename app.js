@@ -39,6 +39,7 @@ render (
 
 store.subscribe(()=> {
     umbrella.updateColour( store.getState().frames.current )
+    umbrella.updateLedPosition( store.getState().lights.level )
 })
 
 window.dispatchEvent(new Event('resize'))

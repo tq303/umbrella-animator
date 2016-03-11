@@ -49,7 +49,6 @@ class Light extends Component {
             this.setState({
                 enable: false
             })
-
         }
     }
 
@@ -58,8 +57,8 @@ class Light extends Component {
         const panel  = 445,
               radius = 160;
 
-        let left = Math.cos(this.radians( (360 / STRIP_COUNT) * this.props.index )) * radius,
-            top  = Math.sin(this.radians( (360 / STRIP_COUNT) * this.props.index )) * radius;
+        let left = Math.cos(this.radians( 360 - (360 / STRIP_COUNT) * this.props.index )) * radius,
+            top  = Math.sin(this.radians( 360 - (360 / STRIP_COUNT) * this.props.index )) * radius;
 
         let colour   = {
                 color: `#${ ( this.props.colour === INACTIVE_COLOUR ) ? 'ffffff' : this.props.colour }`
