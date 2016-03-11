@@ -12,7 +12,6 @@ class Umbrella extends Object3D {
 
         // material & geometry
         this.material = {
-            mesh: new THREE.MeshLambertMaterial( { color: parseInt( INACTIVE_COLOUR, 16 ) } ),
             line: new THREE.LineBasicMaterial({ color: 0xdd00ff })
         };
 
@@ -100,7 +99,7 @@ class Umbrella extends Object3D {
                 _angle = (( 90 / LED_COUNT ) * i ) + 45,
                 _z     = Math.cos(this.radians(_angle)) * ( this.ledDistance * i );
 
-            lights[i - 1] = new THREE.Mesh( geometry, this.material.mesh );
+            lights[i - 1] = new THREE.Mesh( geometry, new THREE.MeshLambertMaterial( { color: parseInt( INACTIVE_COLOUR, 16 ) } ) );
             lights[i - 1].position.set( _x, _y, _z );
 
             this.add( lights[i - 1] );
