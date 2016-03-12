@@ -9,7 +9,7 @@ class Umbrella extends Object3D {
 
         // setup variables
         this.ledDistance   = 1;
-        this.loopPosition  = 4;
+        this.loopPosition  = 0;
 
         // material & geometry
         this.material = {

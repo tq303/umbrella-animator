@@ -46,7 +46,7 @@ class Light extends Component {
         } else if (this.state.enabled) {
 
             this.setState({
-                enable: false
+                enabled: false
             })
         }
     }
