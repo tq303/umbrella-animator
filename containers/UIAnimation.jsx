@@ -17,28 +17,28 @@ require('../styles/style.scss');
 class UIAnimation extends Component {
 
     componentDidMount() {
-        document.addEventListener("keydown", this.handleKeyEvent.bind(this), true)
+        window.addEventListener("keydown", this.handleKeyEvent.bind(this), false)
     }
 
     componentWillUnmount() {
-        document.removeEventListener("keydown")
+        window.removeEventListener("keydown")
     }
 
     handleKeyEvent( e ) {
-        switch ( e.code ) {
-            case 'ArrowLeft':
+        switch ( e.keyCode ) {
+            case 37:
                     this.props.ledArrayRotateLeft()
                 break;
 
-            case 'ArrowRight':
+            case 39:
                     this.props.ledArrayRotateRight()
                 break;
 
-            case 'ArrowUp':
+            case 38:
                     this.props.ledUp()
                 break;
 
-            case 'ArrowDown':
+            case 40:
                     this.props.ledDwn()
                 break;
         }

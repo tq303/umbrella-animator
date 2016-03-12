@@ -13,6 +13,7 @@ class Canvas {
         this.camera.lookAt(new THREE.Vector3(0,0,0));
 
         this.controls = new OrbitControls(this.camera);
+        this.controls.enableKeys = false;
 
         // initialize renderer
         this.renderer = new THREE.WebGLRenderer();

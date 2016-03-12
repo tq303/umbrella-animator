@@ -43,7 +43,7 @@ class Light extends Component {
 
             }, 0)
             
-        } else if (this.state.enabled) {
+        } else if (newProps.colour === INACTIVE_COLOUR) {
 
             this.setState({
                 enabled: false
