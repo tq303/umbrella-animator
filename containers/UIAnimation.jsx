@@ -67,8 +67,6 @@ class UIAnimation extends Component {
                         <Btn onClick={ this.props.ledDwn } className="fa fa-arrow-down"/>
                     </div>
                 </div>
-
-                <p><DisplayNumber value={ this.props.ledLevel } /></p>
                 
                 <Lights />
 
@@ -82,8 +80,7 @@ UIAnimation.propTypes = {}
 
 const mapStateToProps = ( state, ownProps ) => ({
     framesTotal:   state.frames.all.length,
-    framePosition: ( state.frames.position + 1 ),
-    ledLevel:      ( state.lights.level + 1 )
+    framePosition: ( state.frames.position + 1 )
 })
 
 const mapDispatchToProps = ( dispatch, ownProps ) => ({

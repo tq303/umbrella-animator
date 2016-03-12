@@ -92,6 +92,18 @@ $button-size: 51px;
         #ui-lights {
 
             position: relative;
+
+            & > p {
+                font-family: 'Junction';
+                text-align: center;
+                position: absolute;
+                left: 129px;
+                z-index: 2;
+                top: 55px;
+                font-size: 61px;
+                width: 70px;
+                text-align: center;
+            }
             
             & > div {
 
@@ -124,6 +136,8 @@ $button-size: 51px;
                     box-sizing: border-box;
                     overflow: hidden;
                     box-shadow: 0px 0px 0px 6px #171717;
+                    transition: all 400ms;
+                    transform: scale(1);
 
                     & > div {
 
@@ -162,6 +176,7 @@ $button-size: 51px;
                             }
 
                             &.select-animation {
+                                position: absolute;
                                 font-size: 59px;
                                 z-index: 2;
                                 opacity: 1;
@@ -177,7 +192,7 @@ $button-size: 51px;
 
                                 &.animate {
                                     opacity: 0;
-                                    transform: scale(2);
+                                    transform: scale(3);
                                 }
                             }
 
@@ -185,6 +200,15 @@ $button-size: 51px;
 
                             }
                         }
+                    }
+                }
+
+                &.lights {
+
+                    opacity: 1;
+
+                    &.animate {
+                        transform: scale(.5);
                     }
                 }
 

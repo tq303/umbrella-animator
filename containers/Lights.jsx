@@ -4,6 +4,7 @@ import ColorPicker from 'react-color';
 
 import Light from '../components/Light';
 import Btn from '../components/Button'
+import DisplayNumber from '../components/DisplayNumber'
 
 import { ledActivate, ledDeactivate, setSwatch } from '../actions'
 
@@ -47,6 +48,8 @@ class Lights extends Component {
 
         return (
             <div id="ui-lights">
+
+                <p><DisplayNumber value={ this.props.level } /></p>
 
                 <div className="lights" style={ style } >
                     {
