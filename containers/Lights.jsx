@@ -65,7 +65,7 @@ class Lights extends Component {
                     <Btn onClick={ this.ledActivateComponent.bind(this) }   className="fa fa-ellipsis-v"/>
                     <Btn onClick={ this.ledDeactivateComponent.bind(this) } className="fa fa-circle-thin"/>
                 </div>
-
+                
                 <div className="set-colour">
                     <ColorPicker onChangeComplete={ this.colourChange.bind(this) } type="slider"/>
                 </div>

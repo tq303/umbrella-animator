@@ -66,6 +66,10 @@ class UIAnimation extends Component {
                         <Btn onClick={ this.props.ledUp } className="fa fa-arrow-up"/>
                         <Btn onClick={ this.props.ledDwn } className="fa fa-arrow-down"/>
                     </div>
+                    <div>
+                        <Btn onClick={ this.props.ledUp } className="fa fa-play"/>
+                        <Btn onClick={ this.props.ledDwn } className="fa fa-stop"/>
+                    </div>
                 </div>
                 
                 <Lights />
