@@ -53,8 +53,8 @@ class Light extends Component {
 
     render() {
 
-        const panel  = 320,
-              radius = 120;
+        const panel  = 280,
+              radius = 105;
 
         let left = Math.cos(this.radians( 360 - (360 / STRIP_COUNT) * this.props.index )) * radius,
             top  = Math.sin(this.radians( 360 - (360 / STRIP_COUNT) * this.props.index )) * radius;
