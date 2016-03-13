@@ -14,7 +14,7 @@ class Umbrella extends Object3D {
         // material & geometry
         this.material = {
             line: new THREE.LineBasicMaterial({ color: 0xdd00ff }),
-            loop: new THREE.LineBasicMaterial({ color: 0x17EFDA })
+            loop: new THREE.LineBasicMaterial({ color: 0x5DFFEA })
         };
 
         this.light = {

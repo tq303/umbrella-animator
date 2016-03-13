@@ -9,7 +9,20 @@ import Btn from '../components/Button'
 import DisplayNumber from '../components/DisplayNumber'
 
 // actions
-import { frameFwd, frameBwd, frameAdd, frameRmv, ledUp, ledDwn, ledArrayRotateLeft, ledArrayRotateRight } from '../actions'
+import { 
+    frameFwd,
+    frameBwd,
+    frameAdd,
+    frameRmv,
+    ledUp,
+    ledDwn,
+    ledArrayRotateLeft,
+    ledArrayRotateRight,
+    ledActivate
+} from '../actions'
+
+// constants
+import { STRIP_COUNT } from '../constants/ledDefinitions'
 
 require('../styles/style.scss');
 
@@ -26,21 +39,39 @@ class UIAnimation extends Component {
 
     handleKeyEvent( e ) {
         switch ( e.keyCode ) {
+
             case 37:
-                    this.props.ledArrayRotateLeft()
+                this.props.ledArrayRotateLeft()
                 break;
 
             case 39:
-                    this.props.ledArrayRotateRight()
+                this.props.ledArrayRotateRight()
                 break;
 
             case 38:
-                    this.props.ledUp()
+                this.props.ledUp()
                 break;
 
             case 40:
-                    this.props.ledDwn()
+                this.props.ledDwn()
                 break;
+
+            case 81:
+                this.props.ledActivate( this.props.swatch, this.props.rotateIndex, false )
+                break;
+
+            case 87:
+                this.props.ledActivate( this.props.swatch )
+                break;
+
+            case 69:
+                this.props.ledActivate( this.props.swatch, this.props.rotateIndex, true )
+                break;
+
+            case 82:
+                this.props.ledDeactivate()
+                break;
+
         }
     }
 
@@ -84,7 +115,10 @@ UIAnimation.propTypes = {}
 
 const mapStateToProps = ( state, ownProps ) => ({
     framesTotal:   state.frames.all.length,
-    framePosition: ( state.frames.position + 1 )
+    framePosition: ( state.frames.position + 1 ),
+    swatch:  state.swatch,
+    level:   state.lights.level,
+    rotateIndex: state.lights.rotate / ( 360 / STRIP_COUNT )
 })
 
 const mapDispatchToProps = ( dispatch, ownProps ) => ({
@@ -95,7 +129,9 @@ const mapDispatchToProps = ( dispatch, ownProps ) => ({
     ledUp:    () => dispatch( ledUp() ),
     ledDwn:   () => dispatch( ledDwn() ),
     ledArrayRotateLeft: ()=> dispatch( ledArrayRotateLeft() ),
-    ledArrayRotateRight: ()=> dispatch( ledArrayRotateRight() )
+    ledArrayRotateRight: ()=> dispatch( ledArrayRotateRight() ),
+    ledActivate:   ( colour, strip, all ) => dispatch( ledActivate( colour, strip, all ) ),
+    ledDeactivate: () => dispatch( ledDeactivate() ),
 })
 
 export default connect( mapStateToProps, mapDispatchToProps )( UIAnimation )
