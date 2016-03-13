@@ -18,7 +18,8 @@ import {
     ledDwn,
     ledArrayRotateLeft,
     ledArrayRotateRight,
-    ledActivate
+    ledActivate,
+    ledDeactivate
 } from '../actions'
 
 // constants
