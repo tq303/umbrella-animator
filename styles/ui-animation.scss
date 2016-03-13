@@ -153,6 +153,10 @@ $button-size: 51px;
                     transition: all 400ms;
                     transform: scale(1);
 
+                    &.animate {
+                        transition: all 0ms;
+                    }
+
                     & > div {
 
                         position: absolute;

@@ -8,7 +8,7 @@ import DisplayNumber from '../components/DisplayNumber'
 
 import { ledActivate, ledDeactivate, setSwatch } from '../actions'
 
-import { INACTIVE_COLOUR } from '../constants/ledDefinitions'
+import { STRIP_COUNT, INACTIVE_COLOUR } from '../constants/ledDefinitions'
 
 class Lights extends Component {
 
@@ -60,9 +60,9 @@ class Lights extends Component {
                 </div>
 
                 <div className="controls">
-                    <Btn onClick={ this.ledDeactivateComponent.bind(this) } className="fa fa-dot-circle-o"/>
+                    <Btn onClick={ this.ledActivateComponent.bind(this, this.props.rotateIndex) } className="fa fa-dot-circle-o"/>
                     <Btn onClick={ this.ledActivateComponent.bind(this) }   className="fa fa-sun-o"/>
-                    <Btn onClick={ this.ledActivateComponent.bind(this) }   className="fa fa-ellipsis-v"/>
+                    <Btn onClick={ this.ledActivateComponent.bind(this, this.props.rotateIndex, true) }   className="fa fa-ellipsis-v"/>
                     <Btn onClick={ this.ledDeactivateComponent.bind(this) } className="fa fa-circle-thin"/>
                 </div>
                 
@@ -81,7 +81,8 @@ const mapStateToProps = ( state, ownProps ) => ({
     level:   state.lights.level,
     current: state.lights.current,
     rotate:  state.lights.rotate,
-    swatch:  state.swatch
+    swatch:  state.swatch,
+    rotateIndex: state.lights.rotate / ( 360 / STRIP_COUNT )
 })
 
 const mapDispatchToProps = ( dispatch ) => ({

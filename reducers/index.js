@@ -213,6 +213,15 @@ export default function ( state = initialState, action ) {
             }
 
         case 'LED_ARRAY_ROTATE_LEFT':
+
+            let setRotateLeft = null;
+
+            if (state.lights.rotate - ( 360 / STRIP_COUNT ) <= 0) {
+                setRotateLeft = 360;
+            } else {
+                setRotateLeft = state.lights.rotate - ( 360 / STRIP_COUNT )
+            }
+
             return {
                 ...state,
                 lights: {
@@ -222,6 +231,15 @@ export default function ( state = initialState, action ) {
             }
 
         case 'LED_ARRAY_ROTATE_RIGHT':
+
+            let setRotateRight = null;
+
+            if (state.lights.rotate + ( 360 / STRIP_COUNT ) >= 0) {
+                setRotateRight = 0;
+            } else {
+                setRotateRight = state.lights.rotate + ( 360 / STRIP_COUNT )
+            }
+
             return {
                 ...state,
                 lights: {
