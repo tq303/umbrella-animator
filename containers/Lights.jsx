@@ -82,7 +82,7 @@ const mapStateToProps = ( state, ownProps ) => ({
     current: state.lights.current,
     rotate:  state.lights.rotate,
     swatch:  state.swatch,
-    rotateIndex: state.lights.rotate / ( 360 / STRIP_COUNT )
+    rotateIndex: state.lights.rotateIndex
 })
 
 const mapDispatchToProps = ( dispatch ) => ({

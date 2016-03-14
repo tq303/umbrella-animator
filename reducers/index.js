@@ -213,20 +213,28 @@ export default ( state = initialState, action )=> {
             }
 
         case 'LED_ARRAY_ROTATE_LEFT':
+
+            const calcRotateIndexLeft = Math.floor(Math.abs(state.lights.rotate - ( 360 / STRIP_COUNT ) + 360) % 360) / ( 360 / STRIP_COUNT )
+
             return {
                 ...state,
                 lights: {
                     ...state.lights,
-                    rotate: state.lights.rotate - ( 360 / STRIP_COUNT )
+                    rotate: state.lights.rotate - ( 360 / STRIP_COUNT ),
+                    rotateIndex: calcRotateIndexLeft
                 }
             }
 
         case 'LED_ARRAY_ROTATE_RIGHT':
+
+            const calcRotateIndexRight = Math.floor(Math.abs(state.lights.rotate + ( 360 / STRIP_COUNT ) + 360) % 360) / ( 360 / STRIP_COUNT )
+
             return {
                 ...state,
                 lights: {
                     ...state.lights,
-                    rotate: state.lights.rotate + ( 360 / STRIP_COUNT )
+                    rotate: state.lights.rotate + ( 360 / STRIP_COUNT ),
+                    rotateIndex: calcRotateIndexRight
                 }
             }
 

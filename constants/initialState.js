@@ -10,7 +10,8 @@ export default {
     lights: {
         current: defaultFrame.map( strip => strip[0] ),
         level: 0,
-        rotate: 0
+        rotate: 0,
+        rotateIndex: 0,
     },
     swatch: INACTIVE_COLOUR
 }

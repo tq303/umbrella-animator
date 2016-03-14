@@ -58,6 +58,7 @@ class UIAnimation extends Component {
                 break;
 
             case 81:
+                console.log(this.props.rotateIndex)
                 this.props.ledActivate( this.props.swatch, this.props.rotateIndex, false )
                 break;
 
@@ -119,7 +120,7 @@ const mapStateToProps = ( state, ownProps ) => ({
     framePosition: ( state.frames.position + 1 ),
     swatch:  state.swatch,
     level:   state.lights.level,
-    rotateIndex: state.lights.rotate / ( 360 / STRIP_COUNT )
+    rotateIndex: state.lights.rotateIndex
 })
 
 const mapDispatchToProps = ( dispatch, ownProps ) => ({
