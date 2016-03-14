@@ -13,5 +13,6 @@ export default {
         rotate: 0,
         rotateIndex: 0,
     },
-    swatch: INACTIVE_COLOUR
+    swatch: INACTIVE_COLOUR,
+    playing: false
 }

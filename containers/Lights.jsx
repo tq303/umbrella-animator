@@ -34,9 +34,9 @@ class Lights extends Component {
 
     componentWillReceiveProps( newProps ) {
         if ( newProps.level > this.props.level ) {
-            console.log('animate up')
+            // console.log('animate up')
         } else if ( newProps.level < this.props.level ) {
-            console.log('animate down')
+            // console.log('animate down')
         }
     }
 

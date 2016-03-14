@@ -15,8 +15,8 @@ const store = createStore(
     window.devToolsExtension ? window.devToolsExtension() : undefined
 )
 
-let canvas    = new Canvas( 1024, 576, 25 ),
-    umbrella  = new Umbrella({ x: 0, y: 0 });
+let canvas   = new Canvas( 1024, 576, 25 ),
+    umbrella = new Umbrella({ x: 0, y: 0 });
 
 // add single umbrella
 canvas.scene.add( umbrella )

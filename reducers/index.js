@@ -244,6 +244,12 @@ export default ( state = initialState, action )=> {
                 swatch: action.swatch
             }
 
+        case 'SET_PLAYING':
+            return {
+                ...state,
+                playing: action.playing
+            }
+
         case 'RESET':
             return {
                 ...initialState

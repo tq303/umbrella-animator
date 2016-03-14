@@ -56,3 +56,9 @@ export const ledArrayRotateLeft = () => ({
 export const ledArrayRotateRight = () => ({
     type: 'LED_ARRAY_ROTATE_RIGHT'
 })
+
+export const setPlaying = ( playing = true ) => ({
+    type: 'SET_PLAYING',
+    playing
+})
+

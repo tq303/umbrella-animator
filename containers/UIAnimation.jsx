@@ -19,7 +19,9 @@ import {
     ledArrayRotateLeft,
     ledArrayRotateRight,
     ledActivate,
-    ledDeactivate
+    ledDeactivate,
+    setPlaying
+
 } from '../actions'
 
 // constants
@@ -77,6 +79,7 @@ class UIAnimation extends Component {
     }
 
     render() {
+        console.log(this.props.playing)
         return (
             <div id="cycle">
 
@@ -99,8 +102,8 @@ class UIAnimation extends Component {
                         <Btn onClick={ this.props.ledDwn } className="fa fa-arrow-down"/>
                     </div>
                     <div>
-                        <Btn onClick={ this.props.ledUp } className="fa fa-play"/>
-                        <Btn onClick={ this.props.ledDwn } className="fa fa-stop"/>
+                        <Btn onClick={ this.props.setPlaying.bind( this ) } className="fa fa-play"/>
+                        <Btn onClick={ this.props.setPlaying.bind( this, false ) } className="fa fa-stop"/>
                     </div>
                 </div>
                 
@@ -117,22 +120,24 @@ UIAnimation.propTypes = {}
 const mapStateToProps = ( state, ownProps ) => ({
     framesTotal:   state.frames.all.length,
     framePosition: ( state.frames.position + 1 ),
-    swatch:  state.swatch,
-    level:   state.lights.level,
-    rotateIndex: state.lights.rotateIndex
+    swatch:        state.swatch,
+    level:         state.lights.level,
+    rotateIndex:   state.lights.rotateIndex,
+    playing:       state.playing,
 })
 
 const mapDispatchToProps = ( dispatch, ownProps ) => ({
-    frameFwd: () => dispatch( frameFwd() ),
-    frameBwd: () => dispatch( frameBwd() ),
-    frameAdd: () => dispatch( frameAdd() ),
-    frameRmv: () => dispatch( frameRmv() ),
-    ledUp:    () => dispatch( ledUp() ),
-    ledDwn:   () => dispatch( ledDwn() ),
-    ledArrayRotateLeft: ()=> dispatch( ledArrayRotateLeft() ),
+    frameFwd:            () => dispatch( frameFwd() ),
+    frameBwd:            () => dispatch( frameBwd() ),
+    frameAdd:            () => dispatch( frameAdd() ),
+    frameRmv:            () => dispatch( frameRmv() ),
+    ledUp:               () => dispatch( ledUp() ),
+    ledDwn:              () => dispatch( ledDwn() ),
+    ledArrayRotateLeft:  ()=> dispatch( ledArrayRotateLeft() ),
     ledArrayRotateRight: ()=> dispatch( ledArrayRotateRight() ),
-    ledActivate:   ( colour, strip, all ) => dispatch( ledActivate( colour, strip, all ) ),
-    ledDeactivate: () => dispatch( ledDeactivate() ),
+    ledActivate:         ( colour, strip, all ) => dispatch( ledActivate( colour, strip, all ) ),
+    ledDeactivate:       () => dispatch( ledDeactivate() ),
+    setPlaying:          ( playing ) => dispatch( setPlaying( playing ) )
 })
 
 export default connect( mapStateToProps, mapDispatchToProps )( UIAnimation )
