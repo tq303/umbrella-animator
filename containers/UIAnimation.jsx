@@ -58,7 +58,6 @@ class UIAnimation extends Component {
                 break;
 
             case 81:
-                console.log(this.props.rotateIndex)
                 this.props.ledActivate( this.props.swatch, this.props.rotateIndex, false )
                 break;
 

@@ -45,7 +45,7 @@ export default ( state = initialState, action )=> {
                 frames: {
                     all: [
                         ...state.frames.all.slice( 0, state.frames.position + 1),
-                        defaultFrame,
+                        state.frames.all[ state.frames.position ].map( strip => strip ),
                         ...state.frames.all.slice( state.frames.position + 1 )
                     ],
                     position: ( state.frames.position + 1 ),
