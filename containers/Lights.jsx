@@ -1,8 +1,8 @@
-import React, { Component, PropTypes } from 'react';
+import React, { Component, PropTypes } from 'react'
 import { connect } from 'react-redux'
-import ColorPicker from 'react-color';
+import ColorPicker from 'react-color'
 
-import Light from '../components/Light';
+import Light from '../components/Light'
 import Btn from '../components/Button'
 import DisplayNumber from '../components/DisplayNumber'
 
@@ -91,4 +91,4 @@ const mapDispatchToProps = ( dispatch ) => ({
     setSwatch:     ( colour ) => dispatch( setSwatch( colour ) ),
 })
 
-export default connect( mapStateToProps, mapDispatchToProps )( Lights );
+export default connect( mapStateToProps, mapDispatchToProps )( Lights )

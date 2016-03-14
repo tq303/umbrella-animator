@@ -3,6 +3,7 @@ import { connect } from 'react-redux'
 
 // containers
 import Lights from './Lights'
+import ControlPanel from './ControlPanel'
 
 // components
 import Btn from '../components/Button'
@@ -79,9 +80,10 @@ class UIAnimation extends Component {
     }
 
     render() {
-        console.log(this.props.playing)
         return (
             <div id="cycle">
+
+                <ControlPanel/>
 
                 <div className="controls grouped">
                     <div>

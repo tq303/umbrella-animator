@@ -1,7 +1,9 @@
+import 'babel-polyfill'
 import React from 'react'
 import { render } from 'react-dom'
-import { createStore } from 'redux'
+import { createStore, applyMiddleware } from 'redux'
 import { Provider } from 'react-redux'
+import thunkMiddleware from 'redux-thunk'
 
 import Canvas   from './canvas'
 import Umbrella from './umbrella'
@@ -10,8 +12,12 @@ import UIAnimation from './containers/UIAnimation'
 
 import reducers from './reducers'
 
+import initialState from './constants/initialState'
+
 const store = createStore(
     reducers,
+    initialState,
+    applyMiddleware( thunkMiddleware ),
     window.devToolsExtension ? window.devToolsExtension() : undefined
 )
 

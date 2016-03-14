@@ -5,7 +5,8 @@ export default {
     frames: {
         position: 0,
         all: [ defaultFrame.map( strip => strip ) ],
-        current: defaultFrame.map( strip => strip )
+        current: defaultFrame.map( strip => strip ),
+        rate: 24
     },
     lights: {
         current: defaultFrame.map( strip => strip[0] ),
@@ -14,5 +15,9 @@ export default {
         rotateIndex: 0,
     },
     swatch: INACTIVE_COLOUR,
-    playing: false
+    playing: false,
+    upload: {
+        inProgress: false,
+        error: ''
+    }
 }

@@ -1,3 +1,5 @@
+import fetch from 'isomorphic-fetch'
+
 import { STRIP_COUNT, LED_COUNT, INACTIVE_COLOUR } from '../constants/ledDefinitions'
 
 // global
@@ -62,3 +64,26 @@ export const setPlaying = ( playing = true ) => ({
     playing
 })
 
+export const setFrameRate = ( fps ) => ({
+    type: 'SET_FRAMERATE',
+    fps
+})
+
+export const saveAnimation = () => {
+    return ( dispatch, state ) => {
+
+        dispatch( setUploading() )
+
+        fetch('http://www.bbc.co.uk')
+            .then( response => response.json() )
+            .then( json => dispatch( setUploaded() ) )
+    }
+}
+
+const setUploading = () => ({
+    type: 'SET_UPLOADING'
+})
+
+const setUploaded = () => ({
+    type: 'SET_UPLOADED'
+})

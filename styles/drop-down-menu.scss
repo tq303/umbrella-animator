@@ -1,0 +1,25 @@
+.drop-down-menu {
+
+	position: relative;
+
+	& > .selected {
+
+		position: relative;
+
+		& > .value {
+
+		}
+		& > .claret {
+
+		}
+	}
+
+	& > .options {
+
+		position: absolute;
+
+		& > .option {
+			background: red;
+		}
+	}
+}

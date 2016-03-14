@@ -1,9 +1,8 @@
 import defaultFrame from '../constants/defaultFrame'
-import initialState from '../constants/initialState'
 
 import { STRIP_COUNT, LED_COUNT, INACTIVE_COLOUR } from '../constants/ledDefinitions'
 
-export default ( state = initialState, action )=> {
+export default ( state, action )=> {
 
     switch( action.type ) {
 
@@ -248,6 +247,24 @@ export default ( state = initialState, action )=> {
             return {
                 ...state,
                 playing: action.playing
+            }
+
+        case 'SET_UPLOADING':
+            return {
+                ...state,
+                upload: {
+                    ...state.upload,
+                    inProgress: true
+                }
+            }
+
+        case 'SET_UPLOADED':
+            return {
+                ...state,
+                upload: {
+                    ...state.upload,
+                    inProgress: false
+                }
             }
 
         case 'RESET':
