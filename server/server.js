@@ -14,15 +14,19 @@ app.use(bodyParser.urlencoded({
 }));
 
 app.get('/api/animation', function (req, res) {
-
+	res.status(200).send('all');
 });
 
 app.get('/api/animation/:id', function (req, res) {
-
+	res.status(200).send(`single ${ req.params.id }`);
 });
 
 app.post('/api/animation', function (req, res) {
+	res.status(200).send('saved');
+});
 
+app.use(function(req, res, next) {
+  res.status(404).send('invalid url');
 });
 
 // SERVER
