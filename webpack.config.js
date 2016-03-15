@@ -5,6 +5,7 @@ var ExtractTextPlugin = require('extract-text-webpack-plugin'),
     CopyWebpackPlugin = require('copy-webpack-plugin');
 
 module.exports = {
+    devtool: ( process.env.NODE_ENV === 'production' ) ? 'cheap-module-source-map' : 'eval',
     entry: './client/app.js',
     output: {
         path: path.join( __dirname, 'public' ),
@@ -32,6 +33,11 @@ module.exports = {
     plugins: [
         new ExtractTextPlugin('styles.css', {
             allChunks: true
+        }),
+        new webpack.DefinePlugin({
+            'process.env': {
+              'NODE_ENV': JSON.stringify('production')
+            }
         })
     ],
     resolve: {
