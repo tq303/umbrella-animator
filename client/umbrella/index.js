@@ -24,6 +24,8 @@ class Umbrella extends Object3D {
         this.position.set( position.x, position.y, 0 );
 
         this.umbrella = this.create();
+
+        this.interval = null;
     }
 
     simpleUmbrellaObject() {
@@ -170,6 +172,45 @@ class Umbrella extends Object3D {
     updateLedPosition( position ) {
         this.remove( this.umbrella.loop );
         this.umbrella.loop = this.setLoopPosition( position )
+    }
+
+    isAnimating() {
+        return  ( this.interval !== null )
+    }
+
+    startAnimate( framesObject ) {
+
+        let framePosition = 0;
+
+        this.interval = setInterval(() => {
+
+            this.updateColour( framesObject.all[ framePosition ] )
+
+            if ( framePosition < framesObject.all.length ) {
+
+                framePosition++
+
+            } else {
+
+                framePosition = 0
+
+            }
+
+        }, ( 1000 / framesObject.rate ) )
+
+    }
+
+    stopAnimate() {
+
+        if ( this.isAnimating() ) {
+
+            window.clearInterval( this.interval )
+            this.interval = null
+
+        }
+
+        return
+
     }
 
 }

@@ -9,6 +9,8 @@ export default ( state, action )=> {
 
         case 'FRAME_FWD':
 
+            if ( state.playing ) return state
+
             if ( ( state.frames.position + 1 ) < state.frames.all.length ) {
 
                 return {
@@ -24,6 +26,8 @@ export default ( state, action )=> {
             break
 
         case 'FRAME_BWD':
+
+            if ( state.playing ) return state
 
             if ( ( state.frames.position - 1 ) >= 0 ) {
 
@@ -41,6 +45,8 @@ export default ( state, action )=> {
 
         case 'FRAME_ADD':
 
+            if ( state.playing ) return state
+
             // can insert at end or into position
             return {
                 ...state,
@@ -57,6 +63,8 @@ export default ( state, action )=> {
             }
 
         case 'FRAME_REMOVE':
+
+            if ( state.playing ) return state
 
             if ( state.frames.all.length > 1 ) {
                 // can remove at end or into position
@@ -76,6 +84,9 @@ export default ( state, action )=> {
             break
 
         case 'SET_FRAMERATE':
+
+            if ( state.playing ) return state
+
             return {
                 ...state,
                 frames: {
@@ -85,6 +96,8 @@ export default ( state, action )=> {
             }
 
         case 'LED_UP':
+
+            if ( state.playing ) return state
 
             if ( ( state.lights.level + 1 ) < LED_COUNT ) {
 
@@ -101,6 +114,8 @@ export default ( state, action )=> {
 
         case 'LED_DWN':
 
+            if ( state.playing ) return state
+
             if ( ( state.lights.level - 1 ) >= 0 ) {
 
                 return {
@@ -115,6 +130,8 @@ export default ( state, action )=> {
             break
 
         case 'LED_ACTIVATE':
+
+            if ( state.playing ) return state
 
             // change led lights
             const modifiedActivatedFrame = state.frames.current.map(( strip, sIndex ) => {
@@ -171,6 +188,9 @@ export default ( state, action )=> {
             }
 
         case 'LED_DEACTIVATE':
+
+            if ( state.playing ) return state
+
             // change led lights
             const modifiedDeactivatedFrame = state.frames.current.map(( strip, sIndex ) => {
 
@@ -227,6 +247,8 @@ export default ( state, action )=> {
 
         case 'LED_ARRAY_ROTATE_LEFT':
 
+            if ( state.playing ) return state
+
             const calcRotateIndexLeft = Math.floor(Math.abs(state.lights.rotate - ( 360 / STRIP_COUNT ) + 360) % 360) / ( 360 / STRIP_COUNT )
 
             return {
@@ -240,6 +262,8 @@ export default ( state, action )=> {
 
         case 'LED_ARRAY_ROTATE_RIGHT':
 
+            if ( state.playing ) return state
+
             const calcRotateIndexRight = Math.floor(Math.abs(state.lights.rotate + ( 360 / STRIP_COUNT ) + 360) % 360) / ( 360 / STRIP_COUNT )
 
             return {
@@ -252,18 +276,19 @@ export default ( state, action )=> {
             }
 
         case 'SET_SWATCH':
+
+            if ( state.playing ) return state
+
             return {
                 ...state,
                 swatch: action.swatch
             }
 
-        case 'SET_PLAYING':
-            return {
-                ...state,
-                playing: action.playing
-            }
 
         case 'SET_UPLOADING':
+
+            if ( state.playing ) return state
+
             return {
                 ...state,
                 upload: {
@@ -273,12 +298,21 @@ export default ( state, action )=> {
             }
 
         case 'SET_UPLOADED':
+
+            if ( state.playing ) return state
+                
             return {
                 ...state,
                 upload: {
                     ...state.upload,
                     inProgress: false
                 }
+            }
+
+        case 'SET_PLAYING':
+            return {
+                ...state,
+                playing: action.playing
             }
 
         case 'RESET':

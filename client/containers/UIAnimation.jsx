@@ -11,6 +11,10 @@ import Btn from '../components/Button'
 
 // actions
 import {
+    frameRmv,
+    frameAdd,
+    frameBwd,
+    frameFwd,
     ledUp,
     ledDwn,
     ledArrayRotateLeft,
@@ -69,6 +73,22 @@ class UIAnimation extends Component {
 
             case 82:
                 this.props.ledDeactivate()
+                break;
+
+            case 189:
+                this.props.frameRmv()
+                break;
+
+            case 187:
+                this.props.frameAdd()
+                break;
+
+            case 219:
+                this.props.frameBwd()
+                break;
+
+            case 221:
+                this.props.frameFwd()
                 break;
 
         }

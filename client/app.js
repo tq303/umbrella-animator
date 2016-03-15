@@ -7,7 +7,6 @@ import thunkMiddleware from 'redux-thunk'
 
 import Canvas   from './canvas'
 import Umbrella from './umbrella'
-import Animator from './animator'
 import UIAnimation from './containers/UIAnimation'
 
 import reducers from './reducers'
@@ -27,8 +26,6 @@ let canvas   = new Canvas( 1024, 576, 25 ),
 // add single umbrella
 canvas.scene.add( umbrella )
 
-let animator = new Animator( umbrella )
-
 // resize logic
 window.addEventListener("resize", ()=> {
 
@@ -44,8 +41,26 @@ render (
 )
 
 store.subscribe(()=> {
-    umbrella.updateColour( store.getState().frames.current )
-    umbrella.updateLedPosition( store.getState().lights.level )
+
+    if ( store.getState().playing ) {
+
+        if ( !umbrella.isAnimating() ) {
+
+            umbrella.startAnimate( store.getState().frames )
+
+        }
+
+    } else if ( umbrella.isAnimating() ) {
+
+
+        umbrella.stopAnimate()
+
+    } else {
+        
+        umbrella.updateColour( store.getState().frames.current )
+        umbrella.updateLedPosition( store.getState().lights.level )
+        
+    }
 })
 
 window.dispatchEvent(new Event('resize'))
