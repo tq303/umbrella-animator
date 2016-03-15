@@ -1,0 +1,17 @@
+.Select {
+
+    font-family: 'Junction';
+
+    .Select-control {
+
+        background: $button-colour;
+        border-color: $button-border;
+
+        .Select-value {
+        	
+        	.Select-value-label {
+            	color: $font-colour !important;
+        	}    
+        }
+    }
+}
