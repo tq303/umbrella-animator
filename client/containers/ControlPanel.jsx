@@ -1,6 +1,5 @@
 import React, { Component, PropTypes } from 'react'
 import { connect } from 'react-redux'
-import Select from 'react-select'
 
 import Btn from '../components/Button'
 
@@ -23,9 +22,15 @@ const ControlPanel = ({
 	setFrameRate,
 	saveAnimation
 }) => (
-	<div id="control-panel">
-		<Select value={ frameRate } options={ frameRateOptions } onChange={ setFrameRate } />
+	<div className="control-panel">
+		<Btn onClick={ saveAnimation } className="fa fa-file"/>
+		<select>
+			<option>1</option>
+			<option>2</option>
+			<option>3</option>
+		</select>
 		<Btn onClick={ saveAnimation } className="fa fa-cloud-upload"/>
+		<Btn onClick={ saveAnimation } disabled={ true } className="fa fa-cloud-download"/>
 	</div>
 )
 

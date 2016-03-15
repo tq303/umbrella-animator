@@ -11,19 +11,23 @@ $button-size: 51px;
     color: $font-colour;
     background: $background;
 
-    button {
+    .button-layout {
         background: $button-colour;
         border: 1px solid $button-border;
         border-radius: 32px;
         color: $font-colour;
         padding: 0 ( $button-size / 3 );
         box-sizing: border-box;
-        width: $button-size;
-        height: $button-size;
         text-align: center;
     }
 
     button {
+
+        @extend .button-layout;
+
+        width: $button-size;
+        height: $button-size;
+
         &:hover {
             cursor: pointer;
         }
@@ -39,6 +43,40 @@ $button-size: 51px;
 
         & > .control-panel {
 
+            display: table;
+            width: 100%;
+            box-sizing: border-box;
+            padding: 12px 24px;
+
+
+
+            & > * {
+
+                @extend .button-layout;
+
+                display: table-cell;
+                vertical-align: middle;
+                height: $button-size;
+                width: 25%;
+
+                &:nth-child(1) {
+                    border-bottom-right-radius: 0;
+                    border-top-right-radius: 0;
+                    border-right: none;
+                }
+                &:nth-child(2), &:nth-child(3) {
+                    border-radius: 0;
+                    border-right: none;
+                    .Select-control {
+                        border-radius: 0;
+                        border-right: none;
+                    }
+                }
+                &:nth-child(4) {
+                    border-bottom-left-radius: 0;
+                    border-top-left-radius: 0;
+                }
+            }
         }
         
         & > .controls {
