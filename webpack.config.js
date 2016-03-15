@@ -5,7 +5,7 @@ var ExtractTextPlugin = require('extract-text-webpack-plugin'),
     CopyWebpackPlugin = require('copy-webpack-plugin');
 
 module.exports = {
-    devtool: ( process.env.NODE_ENV === 'production' ) ? 'cheap-module-source-map' : 'eval',
+    devtool: ( process.env.NODE_ENV === 'production' ) ? null : 'cheap-source-map',
     entry: './client/app.js',
     output: {
         path: path.join( __dirname, 'public' ),

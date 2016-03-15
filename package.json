@@ -5,7 +5,8 @@
   "main": "server/server.js",
   "scripts": {
     "test": "mocha --require babel-core/register",
-    "start": "webpack-dev-server --progress --colors --port 8888 --content-base public/"
+    "start": "webpack-dev-server --progress --colors --port 8888 --content-base public/",
+    "build": "NODE_ENV=production && webpack --progress -p"
   },
   "author": "oliver white",
   "license": "ISC",
