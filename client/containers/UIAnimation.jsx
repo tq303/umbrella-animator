@@ -3,18 +3,14 @@ import { connect } from 'react-redux'
 
 // containers
 import Lights from './Lights'
+import Frames from './Frames'
 import ControlPanel from './ControlPanel'
 
 // components
 import Btn from '../components/Button'
-import DisplayNumber from '../components/DisplayNumber'
 
 // actions
-import { 
-    frameFwd,
-    frameBwd,
-    frameAdd,
-    frameRmv,
+import {
     ledUp,
     ledDwn,
     ledArrayRotateLeft,
@@ -22,7 +18,6 @@ import {
     ledActivate,
     ledDeactivate,
     setPlaying
-
 } from '../actions'
 
 // constants
@@ -85,18 +80,7 @@ class UIAnimation extends Component {
 
                 <ControlPanel/>
 
-                <div className="controls grouped">
-                    <div>
-                        <Btn onClick={ this.props.frameBwd } className="fa fa-step-backward"/>
-                        <Btn onClick={ this.props.frameFwd } className="fa fa-step-forward"/>
-                    </div>
-                    <div>
-                        <Btn onClick={ this.props.frameAdd } className="fa fa-plus"/>
-                        <Btn onClick={ this.props.frameRmv } className="fa fa-minus"/>
-                    </div>
-                </div>
-
-                <p><DisplayNumber value={ this.props.framePosition } /> : <DisplayNumber value={ this.props.framesTotal }/></p>
+                <Frames/>
 
                 <div className="controls grouped">
                     <div>
@@ -120,12 +104,11 @@ class UIAnimation extends Component {
 UIAnimation.propTypes = {}
 
 const mapStateToProps = ( state, ownProps ) => ({
-    framesTotal:   state.frames.all.length,
-    framePosition: ( state.frames.position + 1 ),
     swatch:        state.swatch,
     level:         state.lights.level,
     rotateIndex:   state.lights.rotateIndex,
     playing:       state.playing,
+    frameRate:     state.frames.rate,
 })
 
 const mapDispatchToProps = ( dispatch, ownProps ) => ({
@@ -139,7 +122,8 @@ const mapDispatchToProps = ( dispatch, ownProps ) => ({
     ledArrayRotateRight: ()=> dispatch( ledArrayRotateRight() ),
     ledActivate:         ( colour, strip, all ) => dispatch( ledActivate( colour, strip, all ) ),
     ledDeactivate:       () => dispatch( ledDeactivate() ),
-    setPlaying:          ( playing ) => dispatch( setPlaying( playing ) )
+    setPlaying:          ( playing ) => dispatch( setPlaying( playing ) ),
+    setFrameRate:        ( fps ) => dispatch( setFrameRate( fps ) ),
 })
 
 export default connect( mapStateToProps, mapDispatchToProps )( UIAnimation )

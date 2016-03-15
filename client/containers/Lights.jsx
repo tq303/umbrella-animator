@@ -59,7 +59,7 @@ class Lights extends Component {
                     }
                 </div>
 
-                <div className="controls">
+                <div className="lights-controls">
                     <Btn onClick={ this.ledActivateComponent.bind(this, this.props.rotateIndex) } className="fa fa-dot-circle-o"/>
                     <Btn onClick={ this.ledActivateComponent.bind(this) }   className="fa fa-sun-o"/>
                     <Btn onClick={ this.ledActivateComponent.bind(this, this.props.rotateIndex, true) }   className="fa fa-ellipsis-v"/>

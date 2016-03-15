@@ -1,4 +1,5 @@
 import defaultFrame from '../constants/defaultFrame'
+import initialState from '../constants/initialState'
 
 import { STRIP_COUNT, LED_COUNT, INACTIVE_COLOUR } from '../constants/ledDefinitions'
 
@@ -13,6 +14,7 @@ export default ( state, action )=> {
                 return {
                     ...state,
                     frames: {
+                        ...state.frames,
                         all: state.frames.all.map( frame => frame ),
                         position: ( state.frames.position + 1 ),
                         current: state.frames.all[ state.frames.position ].map( strip => strip )
@@ -28,6 +30,7 @@ export default ( state, action )=> {
                 return {
                     ...state,
                     frames: {
+                        ...state.frames,
                         all: state.frames.all.map( frame => frame ),
                         position: ( state.frames.position - 1 ),
                         current: state.frames.all[ state.frames.position ].map( strip => strip )
@@ -42,6 +45,7 @@ export default ( state, action )=> {
             return {
                 ...state,
                 frames: {
+                    ...state.frames,
                     all: [
                         ...state.frames.all.slice( 0, state.frames.position + 1),
                         state.frames.all[ state.frames.position ].map( strip => strip ),
@@ -59,6 +63,7 @@ export default ( state, action )=> {
                 return {
                     ...state,
                     frames: {
+                        ...state.frames,
                         all: [
                             ...state.frames.all.slice( 0, state.frames.position ),
                             ...state.frames.all.slice( state.frames.position + 1 )
@@ -69,6 +74,15 @@ export default ( state, action )=> {
                 }
             }
             break
+
+        case 'SET_FRAMERATE':
+            return {
+                ...state,
+                frames: {
+                    ...state.frames,
+                    rate: action.fps
+                }
+            }
 
         case 'LED_UP':
 

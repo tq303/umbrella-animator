@@ -2,6 +2,9 @@ $container-dimension: 320px;
 
 $button-size: 51px;
 
+.outer-padding {
+    padding: 12px 21px;
+}
 #ui-animation {
 
     position: absolute;
@@ -41,14 +44,12 @@ $button-size: 51px;
 
         width: 100%;
 
-        & > .control-panel {
+        .control-panel {
 
             display: table;
             width: 100%;
             box-sizing: border-box;
-            padding: 12px 24px;
-
-
+            @extend .outer-padding;
 
             & > * {
 
@@ -57,14 +58,14 @@ $button-size: 51px;
                 display: table-cell;
                 vertical-align: middle;
                 height: $button-size;
-                width: 25%;
+                width: 33.333333%;
 
                 &:nth-child(1) {
                     border-bottom-right-radius: 0;
                     border-top-right-radius: 0;
                     border-right: none;
                 }
-                &:nth-child(2), &:nth-child(3) {
+                &:nth-child(2) {
                     border-radius: 0;
                     border-right: none;
                     .Select-control {
@@ -72,16 +73,16 @@ $button-size: 51px;
                         border-right: none;
                     }
                 }
-                &:nth-child(4) {
+                &:nth-child(3) {
                     border-bottom-left-radius: 0;
                     border-top-left-radius: 0;
                 }
             }
         }
         
-        & > .controls {
+        .controls {
 
-            margin: 21px;
+            @extend .outer-padding;
 
             &:after {
                 content: "";
@@ -128,15 +129,33 @@ $button-size: 51px;
                 }
             }
         }
-        
-        & > p {
+
+        .frame-controls {
+
             font-family: 'Junction';
-            text-align: center;
-            font-size: 24px;
-            padding: 0;
-            margin: 0;
-            padding-top: 12px;
+            display: table;
+            @extend .outer-padding;
+            padding-top: 0;
+            width: 100%;
+            box-sizing: border-box;
+
+            & > div {
+                display: table-cell;
+                width: 50%;
+                font-size: 24px;
+                padding: 0;
+                margin: 0;
+                padding-top: 12px;
+
+                &:nth-child(1) {
+                    text-align: left;
+                }
+                &:nth-child(2) {
+                    text-align: right;
+                }
+            }
         }
+        
 
         #ui-lights {
 
@@ -156,10 +175,18 @@ $button-size: 51px;
             
             & > div {
 
-                &.controls {
+                &.lights-controls {
+
+                    display: table;
+                    @extend .outer-padding;
+                    width: 100%;
+                    box-sizing: border-box;
+                    table-layout: fixed;
+
                     button {
-                        margin: 14px;
-                        font-size: 16px;
+                        display: table-cell;
+                        margin: 9px;
+                        font-size: 27px;
                         line-height: 18px;
                         text-align: center;
                         vertical-align: middle;

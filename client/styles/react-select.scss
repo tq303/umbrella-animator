@@ -9,9 +9,15 @@
 
         .Select-value {
         	
-        	.Select-value-label {
+            text-align: center;
+
+            .Select-value-label {
             	color: $font-colour !important;
-        	}    
+        	}
+        }
+        
+        .Select-menu-outer {
+            text-align: center;
         }
     }
 }

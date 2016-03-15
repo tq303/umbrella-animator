@@ -6,7 +6,7 @@ export default {
         position: 0,
         all: [ defaultFrame.map( strip => strip ) ],
         current: defaultFrame.map( strip => strip ),
-        rate: 24
+        rate: 8
     },
     lights: {
         current: defaultFrame.map( strip => strip[0] ),
