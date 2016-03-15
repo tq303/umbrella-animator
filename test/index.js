@@ -1,10 +1,10 @@
 import expect from 'expect'
 import { createStore, applyMiddleware } from 'redux'
 
-import reducers from '../reducers'
-import * as actions from '../actions'
+import reducers from '../client/reducers'
+import * as actions from '../client/actions'
 
-import { STRIP_COUNT, LED_COUNT, INACTIVE_COLOUR } from '../constants/ledDefinitions'
+import { STRIP_COUNT, LED_COUNT, INACTIVE_COLOUR } from '../client/constants/ledDefinitions'
 
 let store = createStore( reducers )
 

@@ -1,11 +1,15 @@
 var path    = require('path'),
-webpack = require('webpack');
+    webpack = require('webpack');
 
-var ExtractTextPlugin = require('extract-text-webpack-plugin');
+var ExtractTextPlugin = require('extract-text-webpack-plugin'),
+    CopyWebpackPlugin = require('copy-webpack-plugin');
 
 module.exports = {
-    entry: './app.js',
-    output: { path: __dirname, filename: 'bundle.js' },
+    entry: './client/app.js',
+    output: {
+        path: path.join( __dirname, 'public' ),
+        filename: 'bundle.js'
+    },
     module: {
         loaders: [
             {
@@ -23,9 +27,13 @@ module.exports = {
         ]
     },
     plugins: [
-        new ExtractTextPlugin('styles.css', {
+        new ExtractTextPlugin('styles/styles.css', {
             allChunks: true
-        })
+        }),
+        new CopyWebpackPlugin([
+            { from: 'node_modules/font-awesome/fonts', to: 'public/fonts' },
+            { from: 'node_modules/react-select/dist/react-select.css', to: 'public/styles' }
+        ])
     ],
     resolve: {
         extensions: ['', '.js', '.jsx']
