@@ -1,7 +1,4 @@
 node_modules
-public/fonts
-public/**/*.css
-public/**/*.js
-
 npm-debug.log
+public/**/
 .DS_Store

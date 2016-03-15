@@ -31,6 +31,9 @@ module.exports = {
         ]
     },
     plugins: [
+        new CopyWebpackPlugin([
+            { from: 'client/index.html', to: '.' },
+        ]),
         new ExtractTextPlugin('styles.css', {
             allChunks: true
         }),
