@@ -67,7 +67,7 @@ class Lights extends Component {
                 </div>
                 
                 <div className="set-colour">
-                    <ColorPicker color={ this.props.swatch } onChangeComplete={ this.colourChange.bind(this) } type="slider"/>
+                    <ColorPicker color={ this.props.swatch } onChangeComplete={ this.colourChange.bind(this) } type="compact"/>
                 </div>
 
             </div>
