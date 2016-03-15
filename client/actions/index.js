@@ -1,5 +1,7 @@
 import fetch from 'isomorphic-fetch'
 
+const config = require('../../config');
+
 import { STRIP_COUNT, LED_COUNT, INACTIVE_COLOUR } from '../constants/ledDefinitions'
 
 // global
@@ -74,9 +76,15 @@ export const saveAnimation = () => {
 
         dispatch( setUploading() )
 
-        fetch('http://www.bbc.co.uk')
-            .then( response => response.json() )
-            .then( json => dispatch( setUploaded() ) )
+        fetch( config.api.url, {
+            ...config.request.headers,
+            body: JSON.stringify({
+                name: 'Hubot',
+                login: 'hubot',
+            })
+        })
+        .then( response => console.log('sadf') )
+        .then( json => dispatch( setUploaded() ) )
     }
 }
 
