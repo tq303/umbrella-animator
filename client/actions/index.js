@@ -66,7 +66,7 @@ export const setPlaying = ( playing = true ) => ({
 
 export const setFrameRate = ( fps ) => ({
     type: 'SET_FRAMERATE',
-    fps
+    fps: fps.value
 })
 
 export const saveAnimation = () => {

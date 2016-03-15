@@ -13,7 +13,7 @@ class Umbrella extends Object3D {
 
         // material & geometry
         this.material = {
-            line: new THREE.LineBasicMaterial({ color: 0xdd00ff }),
+            line: new THREE.LineBasicMaterial({ color: 0x636363 }),
             loop: new THREE.LineBasicMaterial({ color: 0x5DFFEA })
         };
 
@@ -186,17 +186,15 @@ class Umbrella extends Object3D {
 
             this.updateColour( framesObject.all[ framePosition ] )
 
-            if ( framePosition < framesObject.all.length ) {
+            framePosition++
 
-                framePosition++
-
-            } else {
+            if ( framePosition === framesObject.all.length ) {
 
                 framePosition = 0
 
             }
 
-        }, ( 1000 / framesObject.rate ) )
+        }, Math.floor( 1000 / framesObject.rate ) )
 
     }
 
