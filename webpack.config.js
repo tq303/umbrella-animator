@@ -8,10 +8,11 @@ module.exports = {
     entry: './client/app.js',
     output: {
         path: path.join( __dirname, 'public' ),
-        filename: 'bundle.js'
+        filename: 'js/bundle.js'
     },
     module: {
         loaders: [
+            // jsx
             {
                 test: /.jsx?$/,
                 loader: 'babel-loader',
@@ -20,20 +21,23 @@ module.exports = {
                     presets: ['es2015', 'react']
                 }
             },
-            {
-                test: /\.scss$/,
-                loader: ExtractTextPlugin.extract('css!sass')
-            }
+            // sass
+            { test: /\.scss$/, loader: ExtractTextPlugin.extract('css!sass') },
+            // fonts
+            { test: /\.svg(\?v=\d+\.\d+\.\d+)?$/,   loader: 'file?name=./fonts/[name].[ext]' },
+            { test: /\.woff(\?v=\d+\.\d+\.\d+)?$/,  loader: 'file?name=./fonts/[name].[ext]' },
+            { test: /\.woff2(\?v=\d+\.\d+\.\d+)?$/, loader: 'file?name=./fonts/[name].[ext]' },
+            { test: /\.ttf(\?v=\d+\.\d+\.\d+)?$/,   loader: 'file?name=./fonts/[name].[ext]' },
+            { test: /\.eot(\?v=\d+\.\d+\.\d+)?$/,   loader: 'file?name=./fonts/[name].[ext]' },
+            // font-awesome
+            { test: /\.woff(2)?(\?v=[0-9]\.[0-9]\.[0-9])?$/,      loader: "url?limit=10000&minetype=application/font-woff&name=./fonts/[name].[ext]" },
+            { test: /\.(ttf|eot|svg)(\?v=[0-9]\.[0-9]\.[0-9])?$/, loader: "file?name=./fonts/[name].[ext]" }
         ]
     },
     plugins: [
-        new ExtractTextPlugin('styles/styles.css', {
+        new ExtractTextPlugin('styles.css', {
             allChunks: true
-        }),
-        new CopyWebpackPlugin([
-            { from: 'node_modules/font-awesome/fonts', to: 'public/fonts' },
-            { from: 'node_modules/react-select/dist/react-select.css', to: 'public/styles' }
-        ])
+        })
     ],
     resolve: {
         extensions: ['', '.js', '.jsx']

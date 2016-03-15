@@ -1,7 +1,8 @@
-$fa-font-path: "~/../../public/fonts";
-@import "/../../node_modules/font-awesome/scss/font-awesome.scss";
+// the ~ symbol is needed to node-sass
+$fa-font-path: "~../../node_modules/font-awesome/fonts";
+@import "~../../node_modules/font-awesome/scss/font-awesome.scss";
 
-@import "/../../public/styles/react-select.css";
+@import "~../../node_modules/react-select/dist/react-select.css";
 
 @import 'ui-animation';
 @import 'fonts';
