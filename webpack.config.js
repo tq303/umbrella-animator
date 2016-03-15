@@ -24,14 +24,9 @@ module.exports = {
             // sass
             { test: /\.scss$/, loader: ExtractTextPlugin.extract('css!sass') },
             // fonts
-            { test: /\.svg(\?v=\d+\.\d+\.\d+)?$/,   loader: 'file?name=./fonts/[name].[ext]' },
-            { test: /\.woff(\?v=\d+\.\d+\.\d+)?$/,  loader: 'file?name=./fonts/[name].[ext]' },
-            { test: /\.woff2(\?v=\d+\.\d+\.\d+)?$/, loader: 'file?name=./fonts/[name].[ext]' },
-            { test: /\.ttf(\?v=\d+\.\d+\.\d+)?$/,   loader: 'file?name=./fonts/[name].[ext]' },
-            { test: /\.eot(\?v=\d+\.\d+\.\d+)?$/,   loader: 'file?name=./fonts/[name].[ext]' },
+            { test: /\.(woff|ttf|eot|svg)(\?v=[0-9]\.[0-9]\.[0-9])?$/, loader: "file?name=./fonts/[name].[ext]" },
             // font-awesome
             { test: /\.woff(2)?(\?v=[0-9]\.[0-9]\.[0-9])?$/,      loader: "url?limit=10000&minetype=application/font-woff&name=./fonts/[name].[ext]" },
-            { test: /\.(ttf|eot|svg)(\?v=[0-9]\.[0-9]\.[0-9])?$/, loader: "file?name=./fonts/[name].[ext]" }
         ]
     },
     plugins: [
