@@ -83,7 +83,7 @@ export const saveAnimation = () => {
                 login: 'hubot',
             })
         })
-        .then( response => console.log('sadf') )
+        .then( response => console.log( response ) )
         .then( json => dispatch( setUploaded() ) )
     }
 }
