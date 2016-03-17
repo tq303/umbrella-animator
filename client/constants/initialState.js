@@ -17,6 +17,8 @@ export default {
     swatch: INACTIVE_COLOUR,
     playing: false,
     upload: {
+        showModal: false,
+        uploadName: '',
         inProgress: false,
         error: ''
     }

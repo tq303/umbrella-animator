@@ -5,6 +5,25 @@ $button-size: 51px;
 .outer-padding {
     padding: 12px 21px;
 }
+
+.modal {
+    position: absolute;
+    left: 5%;
+    top: 5%;
+    width: 90%;
+    background: $modal-background;
+    transition: top 300ms ease-out;
+
+    &.animate {
+        transition: top 0ms ease-out;
+        top: -100%;
+    }
+}
+
+#umbrella {
+    
+}
+
 #ui-animation {
 
     position: absolute;
@@ -46,36 +65,42 @@ $button-size: 51px;
 
         .control-panel {
 
-            display: table;
-            width: 100%;
-            box-sizing: border-box;
-            @extend .outer-padding;
+            position: relative;
 
-            & > * {
+            .button-panel {
 
-                @extend .button-layout;
+                display: table;
+                width: 100%;
+                box-sizing: border-box;
+                @extend .outer-padding;
+                overflow: hidden;
 
-                display: table-cell;
-                vertical-align: middle;
-                height: $button-size;
-                width: 33.333333%;
+                & > * {
 
-                &:nth-child(1) {
-                    border-bottom-right-radius: 0;
-                    border-top-right-radius: 0;
-                    border-right: none;
-                }
-                &:nth-child(2) {
-                    border-radius: 0;
-                    border-right: none;
-                    .Select-control {
-                        border-radius: 0;
+                    @extend .button-layout;
+
+                    display: table-cell;
+                    vertical-align: middle;
+                    height: $button-size;
+                    width: 33.333333%;
+
+                    &:nth-child(1) {
+                        border-bottom-right-radius: 0;
+                        border-top-right-radius: 0;
                         border-right: none;
                     }
-                }
-                &:nth-child(3) {
-                    border-bottom-left-radius: 0;
-                    border-top-left-radius: 0;
+                    &:nth-child(2) {
+                        border-radius: 0;
+                        border-right: none;
+                        .Select-control {
+                            border-radius: 0;
+                            border-right: none;
+                        }
+                    }
+                    &:nth-child(3) {
+                        border-bottom-left-radius: 0;
+                        border-top-left-radius: 0;
+                    }
                 }
             }
         }

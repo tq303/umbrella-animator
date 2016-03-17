@@ -285,6 +285,42 @@ export default ( state, action )=> {
             }
 
 
+        case 'SHOW_UPLOAD_MODAL':
+
+            if ( state.playing ) return state
+
+            return {
+                ...state,
+                upload: {
+                    ...state.upload,
+                    showModal: true
+                }
+            }
+
+        case 'HIDE_UPLOAD_MODAL':
+            
+            if ( state.playing ) return state
+
+            return {
+                ...state,
+                upload: {
+                    ...state.upload,
+                    showModal: false
+                }
+            }
+
+        case 'SET_UPLOAD_NAME':
+            
+            if ( state.playing ) return state
+
+            return {
+                ...state,
+                upload: {
+                    ...state.upload,
+                    name: action.name
+                }
+            }
+
         case 'SET_UPLOADING':
 
             if ( state.playing ) return state

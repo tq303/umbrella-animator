@@ -71,6 +71,11 @@ export const setFrameRate = ( fps ) => ({
     fps: fps.value
 })
 
+export const setUploadName = ( name = '' ) => ({
+    type: 'SET_UPLOAD_NAME',
+    name
+})
+
 export const saveAnimation = () => {
     return ( dispatch, store ) => {
 
@@ -78,17 +83,34 @@ export const saveAnimation = () => {
 
         fetch( config.api.url, {
             ...config.request.headers,
-            body: JSON.stringify( store().frames.all )
+            body: JSON.stringify({
+                name: store.upload.name,
+                frames: store().frames.all
+            })
         })
         .then( response => response.json() )
-        .then( json => { console.log(json); dispatch( setUploaded() )} )
+        .then( json => dispatch( setUploaded() ) ) 
     }
 }
 
-const setUploading = () => ({
-    type: 'SET_UPLOADING'
+const setUploading = () => {
+    return ( dispatch, store ) => {
+        dispatch( hideUploadMoal() )
+        dispatch( { type: 'SET_UPLOADING' } )
+    }
+}
+
+const setUploaded = () => {
+    return ( dispatch, store ) => {
+        dispatch( setUploadName() )
+        dispatch( { type: 'SET_UPLOADED' } )
+    }
+}
+
+export const showUploadMoal = () => ({
+    type: 'SHOW_UPLOAD_MODAL'
 })
 
-const setUploaded = () => ({
-    type: 'SET_UPLOADED'
+export const hideUploadMoal = () => ({
+    type: 'HIDE_UPLOAD_MODAL'
 })

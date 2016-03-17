@@ -3,24 +3,37 @@ import { connect } from 'react-redux'
 
 import Btn from '../components/Button'
 
-import { reset, saveAnimation } from '../actions'
+import Modal from './Modal'
+
+import { reset, showUploadMoal } from '../actions'
 
 const ControlPanel = ({
 	reset,
-	saveAnimation
+	showUploadMoal,
+	showModal
 }) => (
 	<div className="control-panel">
-		<Btn onClick={ reset } className="fa fa-file"/>
-		<Btn onClick={ saveAnimation } className="fa fa-cloud-upload"/>
-		<Btn onClick={ saveAnimation } disabled={ true } className="fa fa-cloud-download"/>
+
+		{ showModal ? <Modal animate={ true }/> : null }
+
+		<div className="button-panel">
+			<Btn onClick={ reset } className="fa fa-file"/>
+			<Btn onClick={ showUploadMoal } className="fa fa-cloud-upload"/>
+			<Btn onClick={ showUploadMoal } disabled={ true } className="fa fa-cloud-download"/>
+		</div>
+
 	</div>
 )
 
 ControlPanel.propTypes = {}
 
-const mapDispatchToProps = ( dispatch ) => ({
-	reset: 		   () => dispatch( reset() ),
-	saveAnimation: () => dispatch( saveAnimation() ),
+const mapStateToProps = ( state ) => ({
+	showModal: state.upload.showModal
 })
 
-export default connect( null, mapDispatchToProps )( ControlPanel )
+const mapDispatchToProps = ( dispatch ) => ({
+	reset: 		    () => dispatch( reset() ),
+	showUploadMoal: () => dispatch( showUploadMoal() ),
+})
+
+export default connect( mapStateToProps, mapDispatchToProps )( ControlPanel )

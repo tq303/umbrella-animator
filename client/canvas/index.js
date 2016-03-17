@@ -10,14 +10,15 @@ class Canvas {
         this.scene    = new THREE.Scene();
         this.camera   = new THREE.PerspectiveCamera( 75, width / height, 1, 10000 );
         this.camera.position.z = loadZ;
-        this.camera.lookAt(new THREE.Vector3(0,0,0));
-
-        this.controls = new OrbitControls(this.camera);
-        this.controls.enableKeys = false;
+        this.camera.lookAt( new THREE.Vector3(0,0,0) );
 
         // initialize renderer
         this.renderer = new THREE.WebGLRenderer();
         this.renderer.setSize( width, height );
+
+        // setup controls
+        this.controls = new OrbitControls( this.camera, this.renderer.domElement );
+        this.controls.enableKeys = false;
 
         // add to DOM
         document.getElementById('umbrella').appendChild( this.renderer.domElement );

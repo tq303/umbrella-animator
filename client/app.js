@@ -45,6 +45,7 @@ window.addEventListener("resize", ()=> {
 
 }, false)
 
+// render controls
 render (
     <Provider store={ store }>
         <UIAnimation />
@@ -52,6 +53,7 @@ render (
     document.getElementById('ui-animation')
 )
 
+// subribe to store changes
 store.subscribe(()=> {
 
     if ( store.getState().playing ) {
@@ -75,6 +77,7 @@ store.subscribe(()=> {
     }
 })
 
+// update umbrella colours
 function updateUmbrella( store ) {
     umbrella.updateColour( store.frames.current )
     umbrella.updateLedPosition( store.lights.level )

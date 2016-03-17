@@ -3,6 +3,7 @@
 const express    = require('express'),
 	  bodyParser = require('body-parser'),
 	  path       = require('path'),
+	  fs         = require('fs'),
 	  mkdirp     = require('mkdirp');
 
 
@@ -10,11 +11,12 @@ let app  = express();
 let port = process.env.PORT || 3000;
 
 // allow cors from webpack dev
-if ( process.env.NODE_ENV !== 'production' ) app.use( require('./webpack-cors') )
+if ( process.env.NODE_ENV !== 'production' ) app.use( require('./webpack-cors') );
 
 // create animations folder
-mkdirp.sync( path.join( __dirname, 'animations' ) )
+mkdirp.sync( path.join( __dirname, 'animations' ) );
 
+// serve static files
 app.use(express.static( path.resolve(__dirname, 'public') ));
 
 app.use(bodyParser.json());
@@ -31,6 +33,10 @@ app.get('/api/animation/:id',  (req, res)=> {
 });
 
 app.post('/api/animation',  (req, res)=> {
+
+	console.log( req.body );
+	// fs.
+
 	res.send( req.body );
 });
 
