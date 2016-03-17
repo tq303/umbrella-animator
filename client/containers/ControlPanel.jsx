@@ -14,7 +14,7 @@ const ControlPanel = ({
 }) => (
 	<div className="control-panel">
 
-		{ showModal ? <Modal animate={ true }/> : null }
+		<Modal animate={ true }/>
 
 		<div className="button-panel">
 			<Btn onClick={ reset } className="fa fa-file"/>
@@ -27,13 +27,9 @@ const ControlPanel = ({
 
 ControlPanel.propTypes = {}
 
-const mapStateToProps = ( state ) => ({
-	showModal: state.upload.showModal
-})
-
 const mapDispatchToProps = ( dispatch ) => ({
 	reset: 		    () => dispatch( reset() ),
 	showUploadMoal: () => dispatch( showUploadMoal() ),
 })
 
-export default connect( mapStateToProps, mapDispatchToProps )( ControlPanel )
+export default connect( null, mapDispatchToProps )( ControlPanel )
