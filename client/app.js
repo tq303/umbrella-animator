@@ -9,13 +9,20 @@ import Canvas   from './canvas'
 import Umbrella from './umbrella'
 import UIAnimation from './containers/UIAnimation'
 
+import storage from './storage'
+
 import reducers from './reducers'
 
 import initialState from './constants/initialState'
 
+const REDUX_STATE = 'redux-state'
+
+// load from local storage
+const loadState = storage.get( REDUX_STATE ) || initialState
+
 const store = createStore(
     reducers,
-    initialState,
+    loadState,
     applyMiddleware( thunkMiddleware ),
     window.devToolsExtension ? window.devToolsExtension() : undefined
 )
@@ -25,6 +32,11 @@ let canvas   = new Canvas( 1024, 576, 25 ),
 
 // add single umbrella
 canvas.scene.add( umbrella )
+
+
+if ( storage.get( REDUX_STATE ) !== null ) {
+    updateUmbrella( storage.get( REDUX_STATE ) )
+}
 
 // resize logic
 window.addEventListener("resize", ()=> {
@@ -56,11 +68,16 @@ store.subscribe(()=> {
         umbrella.stopAnimate()
 
     } else {
+            
+        updateUmbrella( store.getState() )
         
-        umbrella.updateColour( store.getState().frames.current )
-        umbrella.updateLedPosition( store.getState().lights.level )
-        
+        storage.set( REDUX_STATE , store.getState())
     }
 })
+
+function updateUmbrella( store ) {
+    umbrella.updateColour( store.frames.current )
+    umbrella.updateLedPosition( store.lights.level )
+}
 
 window.dispatchEvent(new Event('resize'))
