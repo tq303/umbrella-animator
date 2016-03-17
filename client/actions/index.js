@@ -72,19 +72,16 @@ export const setFrameRate = ( fps ) => ({
 })
 
 export const saveAnimation = () => {
-    return ( dispatch, state ) => {
+    return ( dispatch, store ) => {
 
         dispatch( setUploading() )
 
         fetch( config.api.url, {
             ...config.request.headers,
-            body: JSON.stringify({
-                name: 'Hubot',
-                login: 'hubot',
-            })
+            body: JSON.stringify( store().frames.all )
         })
-        .then( response => console.log( response ) )
-        .then( json => dispatch( setUploaded() ) )
+        .then( response => response.json() )
+        .then( json => { console.log(json); dispatch( setUploaded() )} )
     }
 }
 
