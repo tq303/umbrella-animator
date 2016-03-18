@@ -14,7 +14,7 @@ const ControlPanel = ({
 }) => (
 	<div className="control-panel">
 
-		<Modal animate={ true }/>
+		<Modal type="modal-top-down" />
 
 		<div className="button-panel">
 			<Btn onClick={ reset } className="fa fa-file"/>

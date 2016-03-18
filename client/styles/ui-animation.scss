@@ -6,22 +6,8 @@ $button-size: 51px;
     padding: 12px 21px;
 }
 
-.modal {
-    position: absolute;
-    left: 5%;
-    top: 5%;
-    width: 90%;
-    background: $modal-background;
-    transition: top 300ms ease-out;
-
-    &.animate {
-        transition: top 0ms ease-out;
-        top: -100%;
-    }
-}
-
 #umbrella {
-    
+
 }
 
 #ui-animation {

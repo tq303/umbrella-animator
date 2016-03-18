@@ -1,0 +1,26 @@
+.modal-top-down {
+    
+    position: absolute;
+    left: 5%;
+    top: 5%;
+    width: 90%;
+    background: $modal-background;
+
+    &.modal-top-down-enter {
+      top: -100%;
+    }
+
+    &.modal-top-down-enter.modal-top-down-enter-active {
+      top: 5%;
+      transition: top 200ms ease-out;
+    }
+
+    &.modal-top-down-leave {
+      top: 5%;
+    }
+
+    &.modal-top-down-leave.modal-top-down-leave-active {
+      top: -100%;
+      transition: top 200ms ease-out;
+    }
+}
