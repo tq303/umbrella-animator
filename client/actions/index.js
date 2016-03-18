@@ -92,20 +92,17 @@ export const saveAnimation = () => {
             if (response.status >= 200 && response.status < 300) {
                 return response;
             } else {
-                throw Error(response.statusText);                
+                throw response.statusText;
             }
         })
-        .then( response => response.json() )
-        .then( json => dispatch( setUploaded() ) ) 
+        .then( json => dispatch( setUploaded() ) )
         .catch( error => dispatch( setUploadError( error.message ) ) )
     }
 }
 
-const setUploading = () => {
-    return ( dispatch, store ) => {
-        dispatch( { type: 'SET_UPLOADING' } )
-    }
-}
+const setUploading = () => ({
+    type: 'SET_UPLOADING'
+})
 
 const setUploaded = () => {
     return ( dispatch, store ) => {
