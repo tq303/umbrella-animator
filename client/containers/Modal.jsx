@@ -16,6 +16,8 @@ class Modal extends Component {
 						?
 						<div key="modal-key" className={ this.props.type }>
 
+							<p>Save Animation</p>
+
 							<input type="text"
 								   value={ this.props.name }
 								   onChange={ this.props.setUploadName }

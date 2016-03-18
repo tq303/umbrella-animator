@@ -102,6 +102,14 @@ class UIAnimation extends Component {
     render() {
         return (
             <div id="cycle">
+                
+                {
+                    this.props.showModal
+                    ?
+                    <div className="disabled"></div>
+                    :
+                    null
+                }                
 
                 <ControlPanel/>
 
@@ -135,6 +143,7 @@ const mapStateToProps = ( state, ownProps ) => ({
     playing:       state.playing,
     frameRate:     state.frames.rate,
     allowKeyboard: state.lights.allowKeyboardControls,
+    showModal:     state.upload.showModal,
 })
 
 const mapDispatchToProps = ( dispatch, ownProps ) => ({

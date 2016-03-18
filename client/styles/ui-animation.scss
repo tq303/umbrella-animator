@@ -51,7 +51,20 @@ $dial-item-size: 20px;
 
     #cycle {
 
+        position: relative;
         width: 100%;
+
+        .disabled {
+
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: .5;
+            background: black;
+            z-index: 1;
+        }
 
         .control-panel {
 
@@ -180,7 +193,6 @@ $dial-item-size: 20px;
                 text-align: center;
                 position: absolute;
                 left: 92px;
-                z-index: 2;
                 top: 58px;
                 font-size: 31px;
                 width: 70px;

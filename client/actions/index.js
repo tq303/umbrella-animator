@@ -89,6 +89,7 @@ export const saveAnimation = () => {
             })
         })
         .then( response => {
+            console.log( response )
             if (response.status >= 200 && response.status < 300) {
                 return response;
             } else {
@@ -96,7 +97,7 @@ export const saveAnimation = () => {
             }
         })
         .then( json => dispatch( setUploaded() ) )
-        .catch( error => dispatch( setUploadError( error.message ) ) )
+        .catch( error => dispatch( setUploadError( error ) ) )
     }
 }
 

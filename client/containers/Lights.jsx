@@ -49,8 +49,6 @@ class Lights extends Component {
         return (
             <div id="ui-lights">
 
-                <p><DisplayNumber value={ this.props.level } /></p>
-
                 <div className="lights" style={ style } >
                     {
                         this.props.current.map(( a, i ) => {
@@ -66,6 +64,8 @@ class Lights extends Component {
                     <Btn onClick={ this.ledDeactivateComponent.bind(this) } className="fa fa-circle-thin"/>
                 </div>
                 
+                <p><DisplayNumber value={ this.props.level } /></p>
+
                 <div className="set-colour">
                     <ColorPicker color={ this.props.swatch } onChangeComplete={ this.colourChange.bind(this) } type="compact"/>
                 </div>

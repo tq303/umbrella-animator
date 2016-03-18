@@ -2,20 +2,23 @@
 
     position: absolute;
     left: 5%;
-    top: 5%;
+    top: 0;
     width: 90%;
     background: $modal-background;
-    display: table;
     box-sizing: border-box;
     padding: 12px;
     box-shadow: 0px 0px 11px 4px black;
     border-radius: 6px;
-
-    .disable {
-
-    }
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+    z-index: 2;
+    font-family: 'Junction';
 
     p {
+
+        padding: 4px 0;
+        margin: 4px 0;
+
         &.error {
             color: red;
         }
@@ -23,17 +26,16 @@
 
     input {
         width: 98%;
+        margin-bottom: 12px;
     }
 
     button {
-
-        display: table-cell;
 
         &:nth-child(1) {
 
         }
         &:nth-child(2) {
-            
+            float: right;
         }
     }
 }
@@ -47,12 +49,12 @@
   }
 
   &.modal-top-down-enter.modal-top-down-enter-active {
-      top: 5%;
+      top: 0;
       transition: top 200ms ease-out;
   }
 
   &.modal-top-down-leave {
-      top: 5%;
+      top: 0;
   }
 
   &.modal-top-down-leave.modal-top-down-leave-active {
