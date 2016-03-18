@@ -134,7 +134,7 @@ const mapStateToProps = ( state, ownProps ) => ({
     rotateIndex:   state.lights.rotateIndex,
     playing:       state.playing,
     frameRate:     state.frames.rate,
-    allowKeyboard: state.frames.allowKeyboardControls,
+    allowKeyboard: state.lights.allowKeyboardControls,
 })
 
 const mapDispatchToProps = ( dispatch, ownProps ) => ({
@@ -148,8 +148,8 @@ const mapDispatchToProps = ( dispatch, ownProps ) => ({
     ledArrayRotateRight: ()=> dispatch( ledArrayRotateRight() ),
     ledActivate:         ( colour, strip, all ) => dispatch( ledActivate( colour, strip, all ) ),
     ledDeactivate:       () => dispatch( ledDeactivate() ),
-    setPlaying:          ( playing ) => dispatch( setPlaying( playing ) ),
-    setFrameRate:        ( fps ) => dispatch( setFrameRate( fps ) ),
+    setPlaying:          playing => dispatch( setPlaying( playing )),
+    setFrameRate:        fps => dispatch( setFrameRate( fps )),
 })
 
 export default connect( mapStateToProps, mapDispatchToProps )( UIAnimation )

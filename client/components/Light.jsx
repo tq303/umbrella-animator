@@ -1,7 +1,7 @@
 import React, { Component, PropTypes } from 'react';
 
 
-import { STRIP_COUNT, INACTIVE_COLOUR } from '../constants/ledDefinitions'
+import { STRIP_COUNT, INACTIVE_COLOUR, INACTIVE_SPHERE_COLOUR, INDICATOR_COLOUR } from '../constants/ledDefinitions'
 
 class Light extends Component {
 
@@ -53,21 +53,23 @@ class Light extends Component {
 
     render() {
 
-        const panel  = 280,
-              radius = 105;
+        const panel  = 200,
+              radius = 70;
 
         let left = Math.cos(this.radians( 360 - (360 / STRIP_COUNT) * this.props.index )) * radius,
             top  = Math.sin(this.radians( 360 - (360 / STRIP_COUNT) * this.props.index )) * radius;
 
         let position = {
-                top:  `${(( panel / 2 ) + top - 16)}px`,
-                left: `${(( panel / 2 ) + left - 16)}px`
+                top:  `${(( panel / 2 ) - 1 + top - 10)}px`,
+                left: `${(( panel / 2 ) - 1 + left - 10)}px`
             }
 
-        let colour = {};
+        let colour = {
+            boxShadow: `0 0 4px 2px #${ this.props.colour === INACTIVE_COLOUR ? INACTIVE_SPHERE_COLOUR : this.props.colour }`
+        }
 
-        if ( this.props.colour !== INACTIVE_COLOUR ) {
-            colour.color = `#${ this.props.colour }`
+        if ( this.props.index === 0 ) {
+            colour.border = `1px solid #${ INDICATOR_COLOUR }`
         }
 
         return (

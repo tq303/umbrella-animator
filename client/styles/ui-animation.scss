@@ -1,9 +1,13 @@
-$container-dimension: 320px;
+$container-dimension: 250px;
 
-$button-size: 51px;
+$button-size: 41px;
+
+$dial-dimension: 200px;
+$dial-colour: #f2f2f2;
+$dial-item-size: 20px;
 
 .outer-padding {
-    padding: 12px 21px;
+    padding: 6px 21px;
 }
 
 #umbrella {
@@ -153,10 +157,9 @@ $button-size: 51px;
             & > div {
                 display: table-cell;
                 width: 50%;
-                font-size: 24px;
+                font-size: 18px;
                 padding: 0;
                 margin: 0;
-                padding-top: 12px;
 
                 &:nth-child(1) {
                     text-align: left;
@@ -176,10 +179,10 @@ $button-size: 51px;
                 font-family: 'Junction';
                 text-align: center;
                 position: absolute;
-                left: 128px;
+                left: 92px;
                 z-index: 2;
-                top: 55px;
-                font-size: 61px;
+                top: 58px;
+                font-size: 31px;
                 width: 70px;
                 text-align: center;
             }
@@ -196,7 +199,7 @@ $button-size: 51px;
 
                     button {
                         display: table-cell;
-                        margin: 9px;
+                        margin: 5px;
                         font-size: 27px;
                         line-height: 18px;
                         text-align: center;
@@ -206,10 +209,6 @@ $button-size: 51px;
                 }
 
                 &.lights, &.lights-shadow {
-
-                    $dial-dimension: 280px;
-                    $dial-colour: #f2f2f2;
-                    $dial-item-size: 32px;
 
                     position: relative;
                     margin: 0 auto;
@@ -235,7 +234,6 @@ $button-size: 51px;
                         position: absolute;
                         width: $dial-item-size;
                         height: $dial-item-size;
-                        color: $dial-colour;
 
                         &:hover {
                             cursor: pointer;
@@ -245,22 +243,16 @@ $button-size: 51px;
                         & > a {
 
                             position: relative;
-                            font-size: 62px;
                             width: $dial-item-size;
                             height: $dial-item-size;
+                            border-radius: 50%;
+                            line-height: $dial-item-size;
+                            font-size: 44px;
                             vertical-align: middle;
                             text-align: center;
-                            line-height: $dial-item-size;
-
-                            &:before {
-                                content: "\25e6";
-                            }
-
-                            &.active {
-                                &:before {
-                                    content: "\2022";
-                                }
-                            }
+                            display: inline-block;
+                            padding-right: 5px;
+                            box-sizing: border-box;
 
                             &.indicator {
                                 z-index: 1;

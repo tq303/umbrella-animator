@@ -54,7 +54,7 @@ class Lights extends Component {
                 <div className="lights" style={ style } >
                     {
                         this.props.current.map(( a, i ) => {
-                            return (<Light colour={ a } index={ i } onClick={ this.ledActivateComponent.bind( this, i ) } />)
+                            return (<Light key={ `lights-${ i }` } colour={ a } index={ i } onClick={ this.ledActivateComponent.bind( this, i ) } />)
                         })
                     }
                 </div>
@@ -88,7 +88,7 @@ const mapStateToProps = ( state, ownProps ) => ({
 const mapDispatchToProps = ( dispatch ) => ({
     ledActivate:   ( colour, strip, all ) => dispatch( ledActivate( colour, strip, all ) ),
     ledDeactivate: () => dispatch( ledDeactivate() ),
-    setSwatch:     ( colour ) => dispatch( setSwatch( colour ) ),
+    setSwatch:     colour => dispatch( setSwatch( colour ) ),
 })
 
 export default connect( mapStateToProps, mapDispatchToProps )( Lights )

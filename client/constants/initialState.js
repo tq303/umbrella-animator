@@ -20,7 +20,6 @@ export default {
     upload: {
         name: '',
         showModal: false,
-        uploadName: '',
         inProgress: false,
         error: ''
     }
