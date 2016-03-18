@@ -4,7 +4,7 @@ import { connect } from 'react-redux'
 
 import Btn from '../components/Button'
 
-import { hideUploadMoal, saveAnimation, setUploadName } from '../actions'
+import { hideUploadModal, saveAnimation, setUploadName, allowKeyboardControls, disableKeyboardControls } from '../actions'
 
 class Modal extends Component {
 
@@ -15,9 +15,32 @@ class Modal extends Component {
 					this.props.showModal
 						?
 						<div key="modal-key" className={ this.props.type }>
-							<input type="text" onChange={ this.props.setUploadName } />
-							<Btn onClick={ this.props.hideUploadMoal } disabled={ true } className="fa fa-times"/>
-							<Btn onClick={ this.props.saveAnimation } disabled={ true } className="fa fa-check"/>
+
+							<input type="text"
+								   value={ this.props.name }
+								   onChange={ this.props.setUploadName }
+								   onFocus={ this.props.allowKeyboardControls }
+								   onBlur={ this.props.disableKeyboardControls } 
+						    />
+
+							<Btn onClick={ this.props.hideUploadModal } disabled={ false } className="fa fa-times"/>
+							<Btn onClick={ this.props.saveAnimation } disabled={ false } className="fa fa-check"/>
+
+							{
+								this.props.inProgress
+								?
+								<div className="disable"></div>
+								:
+								null
+							}
+							{
+								this.props.error
+								?
+								<p className="error">{ this.props.error }</p>
+								:
+								null
+							}
+
 						</div>
 						:
 						null
@@ -32,13 +55,18 @@ Modal.propTypes = {
 }
 
 const mapStateToProps = ( state ) => ({
-	showModal: state.upload.showModal
+	inProgress:  state.upload.inProgress,
+	showModal: 	 state.upload.showModal,
+	error:   	 state.upload.error,
+	name:   	 state.upload.name,
 })
 
 const mapDispatchToProps = ( dispatch ) => ({
-	hideUploadMoal: () => dispatch( hideUploadMoal() ),
-	saveAnimation:  () => dispatch( saveAnimation() ),
-	setUploadName:  () => dispatch( setUploadName() ),
+	hideUploadModal: () => dispatch( hideUploadModal() ),
+	saveAnimation:   () =>  dispatch( saveAnimation() ),
+	setUploadName:   event =>  dispatch( setUploadName( event.target.value ) ),
+	allowKeyboardControls:   () =>  dispatch( allowKeyboardControls() ),
+	disableKeyboardControls: () =>  dispatch( disableKeyboardControls() ),
 })
 
 export default connect( mapStateToProps, mapDispatchToProps )( Modal )

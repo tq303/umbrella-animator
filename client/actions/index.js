@@ -84,33 +84,54 @@ export const saveAnimation = () => {
         fetch( config.api.url, {
             ...config.request.headers,
             body: JSON.stringify({
-                name: store.upload.name,
+                name:   store().upload.name,
                 frames: store().frames.all
             })
         })
+        .then( response => {
+            if (response.status >= 200 && response.status < 300) {
+                return response;
+            } else {
+                throw Error(response.statusText);                
+            }
+        })
         .then( response => response.json() )
         .then( json => dispatch( setUploaded() ) ) 
+        .catch( error => dispatch( setUploadError( error.message ) ) )
     }
 }
 
 const setUploading = () => {
     return ( dispatch, store ) => {
-        dispatch( hideUploadMoal() )
         dispatch( { type: 'SET_UPLOADING' } )
     }
 }
 
 const setUploaded = () => {
     return ( dispatch, store ) => {
+        dispatch( hideUploadModal() )
         dispatch( setUploadName() )
         dispatch( { type: 'SET_UPLOADED' } )
     }
 }
 
+const setUploadError = ( error = '' ) => ({
+    type: 'SET_UPLOAD_ERROR',
+    error
+})
+
 export const showUploadMoal = () => ({
     type: 'SHOW_UPLOAD_MODAL'
 })
 
-export const hideUploadMoal = () => ({
+export const hideUploadModal = () => ({
     type: 'HIDE_UPLOAD_MODAL'
+})
+
+export const allowKeyboardControls = () => ({
+    type: 'ALLOW_KEYBOARD_CONTROLS'
+})
+
+export const disableKeyboardControls = () => ({
+    type: 'DISABLE_KEYBOARD_CONTROLS'
 })

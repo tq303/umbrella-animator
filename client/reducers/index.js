@@ -298,7 +298,7 @@ export default ( state, action )=> {
             }
 
         case 'HIDE_UPLOAD_MODAL':
-            
+
             if ( state.playing ) return state
 
             return {
@@ -311,6 +311,8 @@ export default ( state, action )=> {
 
         case 'SET_UPLOAD_NAME':
             
+            console.log( 'setting name', action )
+
             if ( state.playing ) return state
 
             return {
@@ -323,8 +325,6 @@ export default ( state, action )=> {
 
         case 'SET_UPLOADING':
 
-            if ( state.playing ) return state
-
             return {
                 ...state,
                 upload: {
@@ -334,8 +334,6 @@ export default ( state, action )=> {
             }
 
         case 'SET_UPLOADED':
-
-            if ( state.playing ) return state
                 
             return {
                 ...state,
@@ -345,11 +343,40 @@ export default ( state, action )=> {
                 }
             }
 
+        case 'SET_UPLOAD_ERROR':
+                
+            return {
+                ...state,
+                upload: {
+                    ...state.upload,
+                    error: action.error
+                }
+            }
+
         case 'SET_PLAYING':
             return {
                 ...state,
                 playing: action.playing
             }
+
+        case 'ALLOW_KEYBOARD_CONTROLS':
+            return {
+                ...state,
+                lights: {
+                    ...state.lights,
+                    allowKeyboardControls: true
+                }
+            }
+
+        case 'DISABLE_KEYBOARD_CONTROLS':
+            return {
+                ...state,
+                lights: {
+                    ...state.lights,
+                    allowKeyboardControls: false
+                }
+            }
+
 
         case 'RESET':
             return {

@@ -41,6 +41,11 @@ class UIAnimation extends Component {
     }
 
     handleKeyEvent( e ) {
+
+        if ( !this.props.allowKeyboard ) {
+            return;
+        }
+
         switch ( e.keyCode ) {
 
             case 37:
@@ -129,6 +134,7 @@ const mapStateToProps = ( state, ownProps ) => ({
     rotateIndex:   state.lights.rotateIndex,
     playing:       state.playing,
     frameRate:     state.frames.rate,
+    allowKeyboard: state.frames.allowKeyboardControls,
 })
 
 const mapDispatchToProps = ( dispatch, ownProps ) => ({

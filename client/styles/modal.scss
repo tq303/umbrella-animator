@@ -1,53 +1,85 @@
-.modal-top-down {
-    
+.modal {
+
     position: absolute;
     left: 5%;
     top: 5%;
     width: 90%;
     background: $modal-background;
+    display: table;
+    box-sizing: border-box;
+    padding: 12px;
+    box-shadow: 0px 0px 11px 4px black;
+    border-radius: 6px;
 
-    &.modal-top-down-enter {
-      top: -100%;
+    .disable {
+
     }
 
-    &.modal-top-down-enter.modal-top-down-enter-active {
-      top: 5%;
-      transition: top 200ms ease-out;
+    p {
+        &.error {
+            color: red;
+        }
     }
 
-    &.modal-top-down-leave {
-      top: 5%;
+    input {
+        width: 98%;
     }
 
-    &.modal-top-down-leave.modal-top-down-leave-active {
-      top: -100%;
-      transition: top 200ms ease-out;
+    button {
+
+        display: table-cell;
+
+        &:nth-child(1) {
+
+        }
+        &:nth-child(2) {
+            
+        }
     }
 }
 
+.modal-top-down {
+
+    @extend .modal;
+
+    &.modal-top-down-enter {
+      top: -100%;
+  }
+
+  &.modal-top-down-enter.modal-top-down-enter-active {
+      top: 5%;
+      transition: top 200ms ease-out;
+  }
+
+  &.modal-top-down-leave {
+      top: 5%;
+  }
+
+  &.modal-top-down-leave.modal-top-down-leave-active {
+      top: -100%;
+      transition: top 200ms ease-out;
+  }
+}
+
 .modal-fade {
-    
-    position: absolute;
-    left: 5%;
-    top: 5%;
-    width: 90%;
-    background: $modal-background;
+
+    @extend .modal;
 
     &.modal-fade-enter {
       opacity: -100%;
-    }
+  }
 
-    &.modal-fade-enter.modal-fade-enter-active {
+  &.modal-fade-enter.modal-fade-enter-active {
       opacity: 5%;
       transition: opacity 200ms ease-out;
-    }
+  }
 
-    &.modal-fade-leave {
+  &.modal-fade-leave {
       opacity: 5%;
-    }
+  }
 
-    &.modal-fade-leave.modal-fade-leave-active {
+  &.modal-fade-leave.modal-fade-leave-active {
       opacity: -100%;
       transition: opacity 200ms ease-out;
-    }
+  }
 }

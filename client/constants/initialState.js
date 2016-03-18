@@ -13,10 +13,12 @@ export default {
         level: 0,
         rotate: 0,
         rotateIndex: 0,
+        allowKeyboardControls: true
     },
     swatch: INACTIVE_COLOUR,
     playing: false,
     upload: {
+        name: '',
         showModal: false,
         uploadName: '',
         inProgress: false,

@@ -18,8 +18,8 @@ import initialState from './constants/initialState'
 const REDUX_STATE = 'redux-state'
 
 // load from local storage
-// const loadState = storage.get( REDUX_STATE ) || initialState
-const loadState = initialState
+const loadState = storage.get( REDUX_STATE ) || initialState
+// const loadState = initialState
 
 const store = createStore(
     reducers,

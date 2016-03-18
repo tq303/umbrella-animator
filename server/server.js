@@ -34,10 +34,16 @@ app.get('/api/animation/:id',  (req, res)=> {
 
 app.post('/api/animation',  (req, res)=> {
 
-	console.log( req.body );
-	// fs.
+	if ( !req.body.name ) {
 
-	res.send( req.body );
+		return res.status(422).send('name is required')
+
+	} else {
+
+		fs.writeFileSync( path.join( __dirname, 'animations', `${ req.body.name }.json` ), JSON.stringify( req.body.frames ));
+		return res.sendStatus(200);
+	}
+
 });
 
 app.use((req, res, next)=> {
