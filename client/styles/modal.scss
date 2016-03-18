@@ -24,3 +24,30 @@
       transition: top 200ms ease-out;
     }
 }
+
+.modal-fade {
+    
+    position: absolute;
+    left: 5%;
+    top: 5%;
+    width: 90%;
+    background: $modal-background;
+
+    &.modal-fade-enter {
+      opacity: -100%;
+    }
+
+    &.modal-fade-enter.modal-fade-enter-active {
+      opacity: 5%;
+      transition: opacity 200ms ease-out;
+    }
+
+    &.modal-fade-leave {
+      opacity: 5%;
+    }
+
+    &.modal-fade-leave.modal-fade-leave-active {
+      opacity: -100%;
+      transition: opacity 200ms ease-out;
+    }
+}
