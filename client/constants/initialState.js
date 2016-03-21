@@ -22,5 +22,11 @@ export default {
         showModal: false,
         inProgress: false,
         error: ''
+    },
+    download: {
+        showModal: false,
+        inProgress: false,
+        error: '',
+        list: []
     }
 }

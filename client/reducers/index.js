@@ -351,6 +351,45 @@ export default ( state, action )=> {
                 }
             }
 
+        case 'SHOW_DOWNLOAD_MODAL':
+
+            return {
+                ...state,
+                download: {
+                    ...state.download,
+                    showModal: true
+                }
+            }
+
+        case 'HIDE_DOWNLOAD_MODAL':
+
+            return {
+                ...state,
+                download: {
+                    ...state.download,
+                    showModal: false
+                }
+            }
+
+        case 'SET_DOWNLOAD_IN_PROGRESS':
+            return {
+                ...state,
+                download: {
+                    ...state.download,
+                    inProgress: action.progress
+                }
+            }
+
+        case 'SET_ANIMATION_LIST':
+            console.log(action.list)
+            return {
+                ...state,
+                download: {
+                    ...state.download,
+                    list: action.list
+                }
+            }
+
         case 'SET_PLAYING':
             return {
                 ...state,

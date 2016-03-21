@@ -24,8 +24,12 @@ app.use(bodyParser.urlencoded({
 	extended: true
 }));
 
+// get all animations
 app.get('/api/animation',  (req, res)=> {
-	res.send('all');
+	fs.readdir( path.join( __dirname, 'animations' ), ( error, animations ) => {
+		console.log(animations)
+		res.send( animations );
+	});
 });
 
 app.get('/api/animation/:id',  (req, res)=> {
@@ -36,7 +40,7 @@ app.post('/api/animation',  (req, res)=> {
 
 	if ( !req.body.name ) {
 
-		return res.status(422).send('name is required')
+		return res.status(422).send('name is required');
 
 	} else {
 

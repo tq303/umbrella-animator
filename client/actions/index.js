@@ -118,7 +118,7 @@ const setUploadError = ( error = '' ) => ({
     error
 })
 
-export const showUploadMoal = () => ({
+export const showUploadModal = () => ({
     type: 'SHOW_UPLOAD_MODAL'
 })
 
@@ -129,6 +129,61 @@ export const hideUploadModal = () => {
         dispatch( { type: 'HIDE_UPLOAD_MODAL' } )
     }
 }
+
+export const showDownloadModal = () => {
+    return dispatch => {
+        dispatch( loadAnimation() )
+        dispatch( { type: 'SHOW_DOWNLOAD_MODAL' } )
+    }
+}
+
+export const hideDownloadModal = () => {
+    return ( dispatch, store ) => {
+        dispatch( allowKeyboardControls() )
+        dispatch( { type: 'HIDE_DOWNLOAD_MODAL' } )
+    }
+}
+
+export const loadAnimation = ( id = null ) => {
+    return ( dispatch, store ) => {
+
+        let query = ''
+
+        if ( id !== null ) {
+            query = '?' + Object.keys(id)
+                          .map((key) => encodeURIComponent(key) + "=" + encodeURIComponent(query[key]))
+                          .join("&")
+                          .replace(/%20/g, "+");
+        }
+
+        dispatch( setDownloadInProgress() )
+
+        fetch(`${ config.api.url }${ query }`, {
+            ...config.request.headers,
+            method: 'get'
+        })
+        .then( response => {
+            if (response.status >= 200 && response.status < 300) {
+                return response.json();
+            } else {
+                throw response.statusText;
+            }
+        })
+        .then( json => dispatch( setAnimationList( json ) ) )
+        .catch( error => dispatch( setAnimationList( [ error ] ) ) )
+
+    }
+}
+
+const setDownloadInProgress = ( progress = true ) => ({
+    type: 'SET_DOWNLOAD_IN_PROGRESS',
+    progress
+})
+
+const setAnimationList = ( list = [] ) => ({
+    type: 'SET_ANIMATION_LIST',
+    list
+})
 
 export const allowKeyboardControls = () => ({
     type: 'ALLOW_KEYBOARD_CONTROLS'

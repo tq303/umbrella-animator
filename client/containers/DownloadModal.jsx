@@ -5,31 +5,32 @@ import Btn from '../components/Button'
 
 import Modal from './Modal'
 
-import { hideUploadModal, saveAnimation, setUploadName, allowKeyboardControls, disableKeyboardControls } from '../actions'
+import { hideDownloadModal, loadAnimation, setUploadName, allowKeyboardControls, disableKeyboardControls } from '../actions'
 
 const ControlPanel = ({
 	inProgress,
 	showModal,
 	error,
+	list,
 	name,
-	hideUploadModal,
-	saveAnimation,
+	hideDownloadModal,
+	loadAnimation,
 	setUploadName,
 	allowKeyboardControls,
 	disableKeyboardControls,
 }) => (
 	<Modal type="modal-top-down" display={ showModal }>
-		<p>Save Animation</p>
 
-		<input type="text"
-			   value={ name }
-			   onChange={ setUploadName }
-			   onFocus={ allowKeyboardControls }
-			   onBlur={ disableKeyboardControls } 
-	    />
+		<p>Download Animation</p>
 
-		<Btn onClick={ hideUploadModal } disabled={ false } className="fa fa-times"/>
-		<Btn onClick={ saveAnimation } disabled={ false } className="fa fa-check"/>
+		<ul className="animation-list">
+			{
+				list.map( item => (<li key={ item }>{ item }</li>) )
+			}
+		</ul>
+
+		<Btn onClick={ hideDownloadModal } disabled={ false } className="fa fa-times"/>
+		<Btn onClick={ loadAnimation } disabled={ false } className="fa fa-check"/>
 
 		{
 			inProgress
@@ -45,21 +46,22 @@ const ControlPanel = ({
 			:
 			null
 		}
+
 	</Modal>
 )
 
 ControlPanel.propTypes = {}
 
 const mapStateToProps = ( state ) => ({
-	name:   	     state.upload.name,
-	error:   	     state.upload.error,
-	inProgress:      state.upload.inProgress,
-	showModal: state.upload.showModal,
+	error:   	state.download.error,
+	list:   	state.download.list,
+	inProgress: state.download.inProgress,
+	showModal:  state.download.showModal,
 })
 
 const mapDispatchToProps = ( dispatch ) => ({
-	hideUploadModal: () => dispatch( hideUploadModal() ),
-	saveAnimation:   () =>  dispatch( saveAnimation() ),
+	hideDownloadModal: () => dispatch( hideDownloadModal() ),
+	loadAnimation:   () =>  dispatch( loadAnimation() ),
 	setUploadName:   event =>  dispatch( setUploadName( event.target.value ) ),
 	allowKeyboardControls:   () =>  dispatch( allowKeyboardControls() ),
 	disableKeyboardControls: () =>  dispatch( disableKeyboardControls() ),

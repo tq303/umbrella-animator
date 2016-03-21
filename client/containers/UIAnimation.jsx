@@ -104,7 +104,7 @@ class UIAnimation extends Component {
             <div id="cycle">
                                 
                 {
-                    this.props.showModal
+                    ( this.props.showUploadModal || this.props.showDownloadModal )
                     ?
                     <div className="disabled"></div>
                     :
@@ -158,14 +158,14 @@ class UIAnimation extends Component {
 UIAnimation.propTypes = {}
 
 const mapStateToProps = ( state, ownProps ) => ({
-    swatch:        state.swatch,
-    level:         state.lights.level,
-    rotateIndex:   state.lights.rotateIndex,
-    playing:       state.playing,
-    frameRate:     state.frames.rate,
-    allowKeyboard: state.lights.allowKeyboardControls,
-    showModal:     state.upload.showModal,
-    playing:       state.playing,
+    swatch:            state.swatch,
+    level:             state.lights.level,
+    rotateIndex:       state.lights.rotateIndex,
+    playing:           state.playing,
+    frameRate:         state.frames.rate,
+    allowKeyboard:     state.lights.allowKeyboardControls,
+    showUploadModal:   state.upload.showUploadModal,
+    showDownloadModal: state.download.showDownloadModal,
 })
 
 const mapDispatchToProps = ( dispatch, ownProps ) => ({

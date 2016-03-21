@@ -72,6 +72,31 @@ $dial-item-size: 20px;
 
             position: relative;
 
+            ul.animation-list {
+
+                list-style: none;
+                padding: 0;
+
+                li {
+
+                    background: #fff;
+                    border-bottom: 1px solid $button-colour;
+                    font-size: 12px;
+                    color: $background;
+                    padding: 4px;
+
+                    &:hover {
+                        cursor: pointer;
+                        background: $button-border;
+                        color: $font-colour;
+                    }
+
+                    &:last-child {
+                        border-bottom: none;
+                    }
+                }
+            }
+
             .button-panel {
 
                 display: table;

@@ -3,31 +3,25 @@ import { connect } from 'react-redux'
 
 import Btn from '../components/Button'
 
-import UploadModal from './UploadModal'
+import UploadModal   from './UploadModal'
+import DownloadModal from './DownloadModal'
 
-import { reset, showUploadMoal, hideUploadModal, saveAnimation, setUploadName, allowKeyboardControls, disableKeyboardControls } from '../actions'
+import { reset, showUploadModal, showDownloadModal } from '../actions'
 
 const ControlPanel = ({
-	inProgress,
-	showModal,
-	error,
-	name,
 	reset,
-	showUploadMoal,
-	hideUploadModal,
-	saveAnimation,
-	setUploadName,
-	allowKeyboardControls,
-	disableKeyboardControls,
+	showUploadModal,
+	showDownloadModal
 }) => (
 	<div className="control-panel">
 
-		<UploadModal display={ showModal } />
+		<UploadModal/>
+		<DownloadModal/>
 
 		<div className="button-panel">
 			<Btn onClick={ reset } className="fa fa-file"/>
-			<Btn onClick={ showUploadMoal } className="fa fa-cloud-upload"/>
-			<Btn onClick={ showUploadMoal } disabled={ true } className="fa fa-cloud-download"/>
+			<Btn onClick={ showUploadModal } className="fa fa-cloud-upload"/>
+			<Btn onClick={ showDownloadModal } className="fa fa-cloud-download"/>
 		</div>
 
 	</div>
@@ -35,21 +29,10 @@ const ControlPanel = ({
 
 ControlPanel.propTypes = {}
 
-const mapStateToProps = ( state ) => ({
-	inProgress:  state.upload.inProgress,
-	showModal: 	 state.upload.showModal,
-	error:   	 state.upload.error,
-	name:   	 state.upload.name,
-})
-
 const mapDispatchToProps = ( dispatch ) => ({
 	reset: 		    () => dispatch( reset() ),
-	showUploadMoal: () => dispatch( showUploadMoal() ),
-	hideUploadModal: () => dispatch( hideUploadModal() ),
-	saveAnimation:   () =>  dispatch( saveAnimation() ),
-	setUploadName:   event =>  dispatch( setUploadName( event.target.value ) ),
-	allowKeyboardControls:   () =>  dispatch( allowKeyboardControls() ),
-	disableKeyboardControls: () =>  dispatch( disableKeyboardControls() ),
+	showUploadModal: () => dispatch( showUploadModal() ),
+	showDownloadModal: () => dispatch( showDownloadModal() ),
 })
 
-export default connect( mapStateToProps, mapDispatchToProps )( ControlPanel )
+export default connect( null, mapDispatchToProps )( ControlPanel )
