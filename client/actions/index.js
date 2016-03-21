@@ -122,9 +122,13 @@ export const showUploadMoal = () => ({
     type: 'SHOW_UPLOAD_MODAL'
 })
 
-export const hideUploadModal = () => ({
-    type: 'HIDE_UPLOAD_MODAL'
-})
+export const hideUploadModal = () => {
+    return ( dispatch, store ) => {
+        dispatch( allowKeyboardControls() )
+        dispatch( setUploadName() )
+        dispatch( { type: 'HIDE_UPLOAD_MODAL' } )
+    }
+}
 
 export const allowKeyboardControls = () => ({
     type: 'ALLOW_KEYBOARD_CONTROLS'
