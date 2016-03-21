@@ -10,8 +10,10 @@ $dial-item-size: 20px;
     padding: 6px 21px;
 }
 
-#umbrella {
-
+.warn-playing {
+    font-family: 'Junction';
+    color: #FFC133;
+    @extend .outer-padding;
 }
 
 #ui-animation {

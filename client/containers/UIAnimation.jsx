@@ -102,31 +102,52 @@ class UIAnimation extends Component {
     render() {
         return (
             <div id="cycle">
-                
+                                
                 {
                     this.props.showModal
                     ?
                     <div className="disabled"></div>
                     :
                     null
-                }                
+                }
 
-                <ControlPanel/>
-
-                <Frames/>
+                {
+                    this.props.playing
+                    ?
+                    <div className="warn-playing">
+                        <p>Playing...</p>
+                    </div>
+                    :
+                    <div>
+                        <ControlPanel/>
+                        <Frames/>
+                    </div>
+                }
 
                 <div className="controls grouped">
-                    <div>
-                        <Btn onClick={ this.props.ledUp } className="fa fa-arrow-up"/>
-                        <Btn onClick={ this.props.ledDwn } className="fa fa-arrow-down"/>
-                    </div>
+                    {
+                        this.props.playing
+                        ?
+                        null
+                        :
+                        <div>
+                            <Btn onClick={ this.props.ledUp } className="fa fa-arrow-up"/>
+                            <Btn onClick={ this.props.ledDwn } className="fa fa-arrow-down"/>
+                        </div>
+                    }
                     <div>
                         <Btn onClick={ this.props.setPlaying.bind( this ) } className="fa fa-play"/>
                         <Btn onClick={ this.props.setPlaying.bind( this, false ) } className="fa fa-stop"/>
                     </div>
                 </div>
                 
-                <Lights />
+                {
+                    this.props.playing
+                    ?
+                    null
+                    :
+                    <Lights />
+                }
 
             </div>
         )
@@ -144,6 +165,7 @@ const mapStateToProps = ( state, ownProps ) => ({
     frameRate:     state.frames.rate,
     allowKeyboard: state.lights.allowKeyboardControls,
     showModal:     state.upload.showModal,
+    playing:       state.playing,
 })
 
 const mapDispatchToProps = ( dispatch, ownProps ) => ({
