@@ -372,6 +372,7 @@ export default ( state, action )=> {
             }
 
         case 'SET_DOWNLOAD_IN_PROGRESS':
+
             return {
                 ...state,
                 download: {
@@ -381,7 +382,7 @@ export default ( state, action )=> {
             }
 
         case 'SET_ANIMATION_LIST':
-            console.log(action.list)
+
             return {
                 ...state,
                 download: {
@@ -391,12 +392,14 @@ export default ( state, action )=> {
             }
 
         case 'SET_PLAYING':
+
             return {
                 ...state,
                 playing: action.playing
             }
 
         case 'ALLOW_KEYBOARD_CONTROLS':
+
             return {
                 ...state,
                 lights: {
@@ -406,6 +409,7 @@ export default ( state, action )=> {
             }
 
         case 'DISABLE_KEYBOARD_CONTROLS':
+
             return {
                 ...state,
                 lights: {
@@ -416,6 +420,7 @@ export default ( state, action )=> {
 
 
         case 'RESET':
+        
             return {
                 ...initialState
             }

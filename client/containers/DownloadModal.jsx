@@ -25,7 +25,7 @@ const ControlPanel = ({
 
 		<ul className="animation-list">
 			{
-				list.map( item => (<li key={ item }>{ item }</li>) )
+				list.map( item => <li key={ item }>{ item }</li> )
 			}
 		</ul>
 
