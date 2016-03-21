@@ -3,37 +3,54 @@ import { connect } from 'react-redux'
 
 import Btn from '../components/Button'
 
-import UploadModal from './UploadModal'
+import Modal from './Modal'
 
-import { reset, showUploadMoal, hideUploadModal, saveAnimation, setUploadName, allowKeyboardControls, disableKeyboardControls } from '../actions'
+import { hideUploadModal, saveAnimation, setUploadName, allowKeyboardControls, disableKeyboardControls } from '../actions'
 
 const ControlPanel = ({
 	inProgress,
 	showModal,
 	error,
 	name,
-	reset,
-	showUploadMoal,
 	hideUploadModal,
 	saveAnimation,
 	setUploadName,
 	allowKeyboardControls,
 	disableKeyboardControls,
 }) => (
-	<div className="control-panel">
+	<Modal type="modal-top-down" display={ showModal }>
+		<p>Save Animation</p>
 
-		<UploadModal display={ showModal } />
+		<input type="text"
+			   value={ name }
+			   onChange={ setUploadName }
+			   onFocus={ allowKeyboardControls }
+			   onBlur={ disableKeyboardControls } 
+	    />
 
-		<div className="button-panel">
-			<Btn onClick={ reset } className="fa fa-file"/>
-			<Btn onClick={ showUploadMoal } className="fa fa-cloud-upload"/>
-			<Btn onClick={ showUploadMoal } disabled={ true } className="fa fa-cloud-download"/>
-		</div>
+		<Btn onClick={ hideUploadModal } disabled={ false } className="fa fa-times"/>
+		<Btn onClick={ saveAnimation } disabled={ false } className="fa fa-check"/>
 
-	</div>
+		{
+			inProgress
+			?
+			<div className="disable"></div>
+			:
+			null
+		}
+		{
+			error
+			?
+			<p className="error">{ error }</p>
+			:
+			null
+		}
+	</Modal>
 )
 
-ControlPanel.propTypes = {}
+ControlPanel.propTypes = {
+	display: PropTypes.bool.isRequired
+}
 
 const mapStateToProps = ( state ) => ({
 	inProgress:  state.upload.inProgress,
@@ -43,8 +60,6 @@ const mapStateToProps = ( state ) => ({
 })
 
 const mapDispatchToProps = ( dispatch ) => ({
-	reset: 		    () => dispatch( reset() ),
-	showUploadMoal: () => dispatch( showUploadMoal() ),
 	hideUploadModal: () => dispatch( hideUploadModal() ),
 	saveAnimation:   () =>  dispatch( saveAnimation() ),
 	setUploadName:   event =>  dispatch( setUploadName( event.target.value ) ),

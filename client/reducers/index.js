@@ -310,8 +310,6 @@ export default ( state, action )=> {
             }
 
         case 'SET_UPLOAD_NAME':
-            
-            console.log( 'setting name', action )
 
             if ( state.playing ) return state
 
