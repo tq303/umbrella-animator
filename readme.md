@@ -9,7 +9,7 @@ npm
 ```
 
 ### Development
-Run `npm start` to fire up webpack-dev-server. Site is hosted on:
+Run `npm run dev` to fire up webpack-dev-server. Site is hosted on:
 ```
 	http://localhost:8888/webpack-dev-server/
 ```
@@ -17,7 +17,7 @@ Run `npm start` to fire up webpack-dev-server. Site is hosted on:
 ### Production
 Run full script, this doesn't provide source-maps
 ```
-	npm run build
+	npm start
 ```
 
 ### Notes
