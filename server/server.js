@@ -57,4 +57,4 @@ app.use((req, res, next)=> {
 // SERVER
 app.listen(port);
 
-console.log('Listening on port %d', port);
+console.log('Listening on port %d',  port);
