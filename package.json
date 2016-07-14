@@ -6,7 +6,8 @@
   "scripts": {
     "test": "mocha --require babel-core/register",
     "dev": "NODE_ENV=dev && webpack-dev-server --progress --colors --port 8888 --content-base public/",
-    "postinstall": "webpack"
+    "postinstall": "webpack",
+    "start": "node ."
   },
   "author": "oliver white",
   "license": "ISC",
